@@ -47,7 +47,7 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	hacerColumna(NewGrilla,ColN,Col),
 	
 	satisface(PistasColumnas,ColN,Col,ColSat).
-hacerColumna(Xs,ColN,Col):- length(Xs,NumFilas), hacerColumnaAux(Xs,NumFilas,ColN,Col).
+hacerColumna(Xs,ColN,Col):- longitud(Xs,NumFilas), hacerColumnaAux(Xs,NumFilas,ColN,Col).
 
 hacerColumnaAux([Xs],1,ColN,[Element]):-getElement(Xs,ColN,Element).
 hacerColumnaAux([X|Xs],N,ColN,[Y|Ys]):-getElement(X,ColN,Y),
@@ -56,6 +56,6 @@ hacerColumnaAux([X|Xs],N,ColN,[Y|Ys]):-getElement(X,ColN,Y),
 getElement([X],0,X).
 getElement([X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
 
-length([],0).
-length([_X|Xs],N):- length(Xs,LXs), N is LXs + 1.
+longitud([],0).
+longitud([_X|Xs],N):- longitud(Xs,LXs), N is LXs + 1.
 
