@@ -1,11 +1,11 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  margin: 100px;
 }
 
 .square {
   background: #fff;
-  border: 1px solid #999;
+  border: 2px solid rgb(209, 159, 22);
   font-size: 24px;
   font-weight: bold;
   margin-right: -1px;

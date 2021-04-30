@@ -23,6 +23,7 @@ class Game extends React.Component {
       if (success) {
         this.setState({
           grid: response['Grilla']
+          //pistasF:response['PistasFilas']
         });
       }
     });
@@ -59,7 +60,7 @@ class Game extends React.Component {
     if (this.state.grid === null) {
       return null;
     }
-    const statusText = 'Keep playing!';
+    const statusText = 'odio este proyecto';
     return (
       <div className="game">
         <Board

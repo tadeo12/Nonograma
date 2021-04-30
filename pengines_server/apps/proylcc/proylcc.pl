@@ -22,9 +22,10 @@ replace(X, XIndex, Y, [Xi|Xs], [Xi|XsY]):-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % put(+Contenido, +Pos, +PistasFilas, +PistasColumnas, +Grilla, -GrillaRes, -FilaSat, -ColSat).
-%
+% FilaSat indica si la fila satisface las Pistas y ColSat indica si la columna satisface las Pistas 
 
-put(Contenido, [RowN, ColN], _PistasFilas, _PistasColumnas, Grilla, NewGrilla, 0, 0):-
+
+put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, FilaSat, ColSat):-
 	% NewGrilla es el resultado de reemplazar la fila Row en la posición RowN de Grilla
 	% (RowN-ésima fila de Grilla), por una fila nueva NewRow.
 	
@@ -38,4 +39,23 @@ put(Contenido, [RowN, ColN], _PistasFilas, _PistasColumnas, Grilla, NewGrilla, 0
 	(replace(Cell, ColN, _, Row, NewRow),
 	Cell == Contenido 
 		;
-	replace(_Cell, ColN, Contenido, Row, NewRow)).
+	replace(_Cell, ColN, Contenido, Row, NewRow)),
+	
+	satisface(PistasFilas,RowN,NewRow,FilaSat),
+
+	% se obtiene la columna en forma de lista
+	hacerColumna(NewGrilla,ColN,Col),
+	
+	satisface(PistasColumnas,ColN,Col,ColSat).
+hacerColumna(Xs,ColN,Col):- length(Xs,NumFilas), hacerColumnaAux(Xs,NumFilas,ColN,Col).
+
+hacerColumnaAux([Xs],1,ColN,[Element]):-getElement(Xs,ColN,Element).
+hacerColumnaAux([X|Xs],N,ColN,[Y|Ys]):-getElement(X,ColN,Y),
+	N1 is N-1,hacerColumnaAux(Xs,N1,ColN,Ys).
+
+getElement([X],0,X).
+getElement([X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
+
+length([],0).
+length([_X|Xs],N):- length(Xs,LXs), N is LXs + 1.
+
