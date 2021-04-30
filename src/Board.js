@@ -5,6 +5,8 @@ class Board extends React.Component {
     render() {
         const numOfRows = this.props.grid.length;
         const numOfCols = this.props.grid[0].length;
+    
+        
         return (
             <div className="board" 
                  style={{
