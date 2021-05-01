@@ -1,11 +1,11 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 100px;
+  margin: 20px;
 }
 
 .square {
   background: #fff;
-  border: 2px solid rgb(209, 159, 22);
+  border: 1px solid #999;
   font-size: 24px;
   font-weight: bold;
   margin-right: -1px;
@@ -20,6 +20,40 @@ body {
 
 .board {
   display: grid;
+}
+
+.horizontal {
+  display: flex;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.rowClues {
+  display: grid;
+}
+
+.colClues {
+  display: grid;
+}
+
+.clue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #b9d6e0;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.clue div {
+  margin: 2px
+}
+
+.colClues .clue {
+  flex-direction: column;
 }
 
 .game {

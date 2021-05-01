@@ -39,14 +39,14 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	(replace(Cell, ColN, _, Row, NewRow),
 	Cell == Contenido 
 		;
-	replace(_Cell, ColN, Contenido, Row, NewRow)),
-	
+	replace(_Cell, ColN, Contenido, Row, NewRow)).
+	/*
 	satisface(PistasFilas,RowN,NewRow,FilaSat),
 
 	% se obtiene la columna en forma de lista
 	hacerColumna(NewGrilla,ColN,Col),
 	
-	satisface(PistasColumnas,ColN,Col,ColSat).
+	satisface(PistasColumnas,ColN,Col,ColSat).*/
 hacerColumna(Xs,ColN,Col):- longitud(Xs,NumFilas), hacerColumnaAux(Xs,NumFilas,ColN,Col).
 
 hacerColumnaAux([Xs],1,ColN,[Element]):-getElement(Xs,ColN,Element).
@@ -54,7 +54,7 @@ hacerColumnaAux([X|Xs],N,ColN,[Y|Ys]):-getElement(X,ColN,Y),
 	N1 is N-1,hacerColumnaAux(Xs,N1,ColN,Ys).
 
 getElement([X],0,X).
-getElement([X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
+getElement([_X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
 
 longitud([],0).
 longitud([_X|Xs],N):- longitud(Xs,LXs), N is LXs + 1.
