@@ -1,6 +1,7 @@
 import React from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
+import Mode from './Mode';
 
 class Game extends React.Component {
 
@@ -71,8 +72,10 @@ class Game extends React.Component {
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
         />
-        <div className="gameInfo">
-          {statusText}
+        <div className="modo">
+          <Mode
+
+          />
         </div>
       </div>
     );

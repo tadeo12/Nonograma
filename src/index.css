@@ -67,5 +67,7 @@ body {
 }
 
 .mode{
-  
+  height: 60px;
+  width: 50px;
+  background-color: tomato;
 }
