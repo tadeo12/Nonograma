@@ -1,6 +1,6 @@
 import React from 'react';
 
-class mode extends React.Component{
+class Mode extends React.Component{
     render(){
         return(
             <button className= "mode" onClick={this.props.onClick}>
@@ -11,4 +11,4 @@ class mode extends React.Component{
 
 }
 
-export default mode;
+export default Mode;

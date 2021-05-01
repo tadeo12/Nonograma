@@ -4,14 +4,15 @@ body {
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #fff ;
+  border: 1px solid rgb(89, 0, 255);
   font-size: 24px;
   font-weight: bold;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
+  
 }
 
 .square:focus {
@@ -70,4 +71,5 @@ body {
   width: 50px;
   background-color: crimson;
   
+
 }
