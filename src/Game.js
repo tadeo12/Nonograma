@@ -5,7 +5,6 @@ import Board from './Board';
 class Game extends React.Component {
 
   pengine;
-
   constructor(props) {
     super(props);
     this.state = {
