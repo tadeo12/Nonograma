@@ -10,6 +10,8 @@ class Game extends React.Component {
     super(props);
     this.state = {
       grid: null,
+      rowClues: null,
+      colClues: null,
       waiting: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -22,8 +24,9 @@ class Game extends React.Component {
     this.pengine.query(queryS, (success, response) => {
       if (success) {
         this.setState({
-          grid: response['Grilla']
-          //pistasF:response['PistasFilas']
+          grid: response['Grilla'],
+          rowClues: response['PistasFilas'],
+          colClues: response['PistasColumns'],
         });
       }
     });
@@ -60,11 +63,13 @@ class Game extends React.Component {
     if (this.state.grid === null) {
       return null;
     }
-    const statusText = 'odio este proyecto';
+    const statusText = 'Keep playing!';
     return (
       <div className="game">
         <Board
           grid={this.state.grid}
+          rowClues={this.state.rowClues}
+          colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
         />
         <div className="gameInfo">
