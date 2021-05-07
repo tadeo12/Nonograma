@@ -66,7 +66,7 @@ satistace(Xs,[_|Ys]):-satisface(Xs,Ys).
 satisfacePista(0,[],[]).
 satisfacePista(0,[X|Xs],Xs):-X\="#".
 
-satisfacePista(N,["#"|Xs],Res):- N1 is N-1,satisface(N1, Xs,Res).
+satisfacePista(N,["#"|Xs],Res):- N1 is N-1,satisfacePista(N1, Xs,Res).
 
 
 
