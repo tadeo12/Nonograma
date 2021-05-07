@@ -57,11 +57,15 @@ class Game extends React.Component {
           waiting: false
           
         });
-        alert("falla");
+        //alert("falla");
       }
     });
   }
 
+  handleMode(){
+     alert("mode");
+  }
+  
   render() {
     if (this.state.grid === null) {
       return null;
@@ -75,11 +79,10 @@ class Game extends React.Component {
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
         />
-        <div className="modo">
-          <Mode
-
+        <Mode
+          onClick={()=>this.hadleMode()}
+            
           />
-        </div>
       </div>
     );
   }

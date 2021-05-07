@@ -56,17 +56,18 @@ hacerColumna([FilaActual|Filas],ColN,[Y|Ys]):-getElement(FilaActual,ColN,Y),hace
 getElement([X|_Xs],0,X).
 getElement([_X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
 
-%satisface(+Lista de Pistas, +Linea) 
+%satisface(+Lista de Pistas, +Linea)
 satisface([],[]).
 satisface([X|Xs],["#"|Ys]):-X1 is X -1, satisfacePista(X1,Ys,Zs),satisface(Xs,Zs).
-satistace(Xs,[_|Ys]):-satisface(Xs,Ys).
+satisface(Xs,[X|Ys]):-(var(X);X="X"),satisface(Xs,Ys).
 
-%satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin 
+%satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin
 %recorrer luego de verificar la pista
 satisfacePista(0,[],[]).
-satisfacePista(0,[X|Xs],Xs):-X\="#".
+satisfacePista(0,[X|Xs],Xs):-var(X);X="X".
 
 satisfacePista(N,["#"|Xs],Res):- N1 is N-1,satisfacePista(N1, Xs,Res).
+
 
 
 
