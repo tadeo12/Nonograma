@@ -4,7 +4,7 @@
 	]).
 
 :-use_module(library(lists)).
-
+ 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -21,7 +21,7 @@ replace(X, XIndex, Y, [Xi|Xs], [Xi|XsY]):-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% put(+Contenido, +Pos, +PistasFilas, +PistasColumnas, +Grilla, -GrillaRes, -FilaSat, -ColSat).
+% put(+Contenido, +Pos, +PistasFilas, +PistasColumnas, +Grilla, -NewGrilla, -FilaSat, -ColSat).
 % FilaSat indica si la fila satisface las Pistas y ColSat indica si la columna satisface las Pistas 
 
 
@@ -32,30 +32,44 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	replace(Row, RowN, NewRow, Grilla, NewGrilla),
 
 	% NewRow es el resultado de reemplazar la celda Cell en la posición ColN de Row por _,
-	% siempre yy cuando Cell coincida con Contenido (Cell se instancia en la llamada al replace/5).
+	% siempre y cuando Cell coincida con Contenido (Cell se instancia en la llamada al replace/5).
 	% En caso contrario (;)
 	% NewRow es el resultado de reemplazar lo que se que haya (_Cell) en la posición ColN de Row por Conenido.	 
 	
-	(replace(Cell, ColN, _, Row, NewRow),
-	Cell == Contenido 
-		;
-	replace(_Cell, ColN, Contenido, Row, NewRow)).
-	/*
-	satisface(PistasFilas,RowN,NewRow,FilaSat),
+	(replace(Cell, ColN, _ , Row, NewRow), Cell == Contenido ; replace(_Cell, ColN, Contenido, Row, NewRow) ),
+	
+	getElement(PistasFilas,RowN,PistasFila),
+	(FilaSat is 1 ,satisface(PistasFila,NewRow);FilaSat is 0),
 
 	% se obtiene la columna en forma de lista
 	hacerColumna(NewGrilla,ColN,Col),
 	
-	satisface(PistasColumnas,ColN,Col,ColSat).*/
-hacerColumna(Xs,ColN,Col):- longitud(Xs,NumFilas), hacerColumnaAux(Xs,NumFilas,ColN,Col).
+	getElement(PistasColumnas,ColN,PistasColumna),
+	(ColSat is 1, satisface(PistasColumna,Col); ColSat is 0).
+%
 
-hacerColumnaAux([Xs],1,ColN,[Element]):-getElement(Xs,ColN,Element).
-hacerColumnaAux([X|Xs],N,ColN,[Y|Ys]):-getElement(X,ColN,Y),
-	N1 is N-1,hacerColumnaAux(Xs,N1,ColN,Ys).
+% hacerColumna(+Xs,+ColN,-Col) 
 
-getElement([X],0,X).
+hacerColumna([],_ColN,[]).
+hacerColumna([FilaActual|Filas],ColN,[Y|Ys]):-getElement(FilaActual,ColN,Y),hacerColumna(Filas,ColN,Ys).
+
+getElement([X|_Xs],0,X).
 getElement([_X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
 
-longitud([],0).
-longitud([_X|Xs],N):- longitud(Xs,LXs), N is LXs + 1.
+%satisface(+Lista de Pistas, +Linea) 
+satisface([],[]).
+satisface([X|Xs],["#"|Ys]):-X1 is X -1, satisfacePista(X1,Ys,Zs),satisface(Xs,Zs).
+satistace(Xs,[_|Ys]):-satisface(Xs,Ys).
+
+%satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin 
+%recorrer luego de verificar la pista
+satisfacePista(0,[],[]).
+satisfacePista(0,[X|Xs],Xs):-X\="#".
+
+satisfacePista(N,["#"|Xs],Res):- N1 is N-1,satisface(N1, Xs,Res).
+
+
+
+
+
 

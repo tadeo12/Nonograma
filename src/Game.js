@@ -55,7 +55,9 @@ class Game extends React.Component {
       } else {
         this.setState({
           waiting: false
+          
         });
+        alert("falla");
       }
     });
   }
@@ -64,7 +66,7 @@ class Game extends React.Component {
     if (this.state.grid === null) {
       return null;
     }
-    const statusText = 'Keep playing!';
+    
     return (
       <div className="game">
         <Board
