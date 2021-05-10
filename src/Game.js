@@ -30,9 +30,11 @@ class Game extends Component {
           grid: response['Grilla'],
           rowClues: response['PistasFilas'],
           colClues: response['PistasColumnas'],
+          filaSat: [].constructor(response['PistasFilas'].length),
+          colSat: [].constructor(response['PistasColumnas'].length)
         });
-        let cantFilas=this.props.grid.length;
-        let cantCol=this.props.grid[0].length;
+        
+
       }
     });
   }
@@ -57,11 +59,21 @@ class Game extends Component {
     });
     this.pengine.query(queryS, (success, response) => {
       if (success) {
+        const filAux=this.state.filaSat;
+        const colAux=this.state.colSat;
+        filAux[i]=response['FilaSat'];
+        colAux[j]=response['ColSat'];
         this.setState({
           grid: response['GrillaRes'],
+          filaSat: filAux,
+          colSat: colAux,
           waiting: false
         })
-        //this.Board.props.colClues[j].setState(satisface=response['ColSat'])
+        
+      /*
+        this.state.colSat[j]= response['ColSat'];
+        console.log(this.state.filaSat[i]+','+this.state.colSat[j])*/
+        
       } else {
         this.setState({
           waiting: false
@@ -88,6 +100,8 @@ class Game extends Component {
           rowClues={this.state.rowClues}
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
+          filaSat={this.state.filaSat}
+          colSat={this.state.colSat}
         />
         <Mode
           onClick={()=>this.hadleMode()}

@@ -9,7 +9,7 @@ class Board extends Component {
 
         const rowClues = this.props.rowClues;
         const colClues = this.props.colClues;
-
+        console.log(this.props.filaSat);
         return (
             <div className="vertical">
                 <div
@@ -28,7 +28,7 @@ class Board extends Component {
                 >
                     <div>{/* top-left corner square */}</div>
                     {colClues.map((clue, i) =>
-                        <Clue clue={clue} satisface={0} key={i}/>
+                        <Clue clue={clue} satisface={this.props.colSat[i]} key={i}/>
                     )}
                 </div>
                 <div className="horizontal">
@@ -41,7 +41,7 @@ class Board extends Component {
                         }}
                     >
                         {rowClues.map((clue, i) =>
-                            <Clue clue={clue} satisface={0} key={i}/>
+                            <Clue clue={clue} satisface={this.props.filaSat[i]} key={i}/>
                         )}
                     </div>
                     <div className="board"
