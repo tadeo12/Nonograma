@@ -58,15 +58,15 @@ getElement([_X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
 
 %satisface(+Lista de Pistas, +Linea)
 satisface([],[]).
-satisface([X|Xs],["#"|Ys]):-X1 is X -1, satisfacePista(X1,Ys,Zs),satisface(Xs,Zs).
+satisface([N|Xs],[X|Ys]):-not(var(X)), X="#", N1 is N -1, satisfacePista(N1,Ys,Zs),satisface(Xs,Zs).
 satisface(Xs,[X|Ys]):-(var(X);X="X"),satisface(Xs,Ys).
 
 %satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin
 %recorrer luego de verificar la pista
 satisfacePista(0,[],[]).
-satisfacePista(0,[X|Xs],Xs):-var(X);X="X".
+satisfacePista(0,[X|Xs],Xs):-var(X);X="X".%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
 
-satisfacePista(N,["#"|Xs],Res):- N1 is N-1,satisfacePista(N1, Xs,Res).
+satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1,satisfacePista(N1, Xs,Res).
 
 
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Square from './Square';
 import Clue from './Clue';
 
-class Board extends React.Component {
+class Board extends Component {
     render() {
         const numOfRows = this.props.grid.length;
         const numOfCols = this.props.grid[0].length;
@@ -28,7 +28,7 @@ class Board extends React.Component {
                 >
                     <div>{/* top-left corner square */}</div>
                     {colClues.map((clue, i) =>
-                        <Clue clue={clue} key={i}/>
+                        <Clue clue={clue} satisface={0} key={i}/>
                     )}
                 </div>
                 <div className="horizontal">
@@ -41,7 +41,7 @@ class Board extends React.Component {
                         }}
                     >
                         {rowClues.map((clue, i) =>
-                            <Clue clue={clue} key={i}/>
+                            <Clue clue={clue} satisface={0} key={i}/>
                         )}
                     </div>
                     <div className="board"

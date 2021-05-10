@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class Mode extends React.Component{
+class Mode extends Component{
     render(){
         return(
             <button className= "mode" >

@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{Component} from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
 import Mode from './Mode';
 
 
-class Game extends React.Component {
+class Game extends Component {
 
   pengine;
   constructor(props) {
@@ -13,6 +13,8 @@ class Game extends React.Component {
       grid: null,
       rowClues: null,
       colClues: null,
+      filaSat: null,
+      colSat: null,
       waiting: false
     };
     this.handleClick = this.handleClick.bind(this);
@@ -21,14 +23,16 @@ class Game extends React.Component {
   }
 
   handlePengineCreate() {
-    const queryS = 'init(PistasFilas, PistasColumns, Grilla)';
+    const queryS = 'init(PistasFilas, PistasColumnas, Grilla)';
     this.pengine.query(queryS, (success, response) => {
       if (success) {
         this.setState({
           grid: response['Grilla'],
           rowClues: response['PistasFilas'],
-          colClues: response['PistasColumns'],
+          colClues: response['PistasColumnas'],
         });
+        let cantFilas=this.props.grid.length;
+        let cantCol=this.props.grid[0].length;
       }
     });
   }
@@ -38,11 +42,16 @@ class Game extends React.Component {
     if (this.state.waiting) {
       return;
     }
+
     // Build Prolog query to make the move, which will look as follows:
     // put("#",[0,1],[], [],[["X",_,_,_,_],["X",_,"X",_,_],["X",_,_,_,_],["#","#","#",_,_],[_,_,"#","#","#"]], GrillaRes, FilaSat, ColSat)
     const squaresS = JSON.stringify(this.state.grid).replaceAll('"_"', "_"); // Remove quotes for variables.
+    const pistasF =JSON.stringify(this.state.rowClues);
+    const pistasC =JSON.stringify(this.state.colClues);
+
     const queryS = 'put("#", [' + i + ',' + j + ']' 
-    + ', [], [],' + squaresS + ', GrillaRes, FilaSat, ColSat)';
+    + ','+ pistasF+','+pistasC+',' + squaresS + ', GrillaRes, FilaSat, ColSat)';
+
     this.setState({
       waiting: true
     });
@@ -51,13 +60,14 @@ class Game extends React.Component {
         this.setState({
           grid: response['GrillaRes'],
           waiting: false
-        });
+        })
+        //this.Board.props.colClues[j].setState(satisface=response['ColSat'])
       } else {
         this.setState({
           waiting: false
           
         });
-        //alert("falla");
+        alert("falla");
       }
     });
   }
