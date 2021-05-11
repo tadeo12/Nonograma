@@ -64,9 +64,9 @@ satisface(Xs,[X|Ys]):-(var(X);X="X"),satisface(Xs,Ys).
 %satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin
 %recorrer luego de verificar la pista
 satisfacePista(0,[],[]).
-satisfacePista(0,[X|Xs],Xs):-var(X);X="X".%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
+satisfacePista(0,[X|Xs],Xs):-var(X) ; X="X".%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
 
-satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1,satisfacePista(N1, Xs,Res).
+satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1, satisfacePista(N1, Xs,Res).
 
 
 

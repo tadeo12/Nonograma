@@ -20,6 +20,11 @@ class Game extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
+
+    
+    
+  
+
   }
 
   handlePengineCreate() {
@@ -87,7 +92,13 @@ class Game extends Component {
   handleMode(){
      alert("mode");
   }
-  
+  hola(){
+    const nav = document.querySelector('modeButton');
+    nav.addEventListener('click', e => {
+      nav.classList.toggle('paint');
+    });
+    console.log('hola');
+ }
   render() {
     if (this.state.grid === null) {
       return null;
@@ -107,9 +118,20 @@ class Game extends Component {
           onClick={()=>this.hadleMode()}
             
           />
+          <script>
+            hola();
+
+          </script>
+        
+        
+        
+
       </div>
+      
     );
   }
+
+
 }
 
 export default Game;

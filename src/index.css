@@ -76,10 +76,56 @@ body {
   margin-left: 20px;
 }
 
-.mode{
-  height: 60px;
-  width: 50px;
-  background-color: crimson;
-  
+.span{
+  border-radius: 5px;
+  background: white;
+  display: block;
+  margin: 2px;
+  height: 2px;
+  width: 60%;
 
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.modeButton{
+  background-color: crimson; 
+  border: 0;
+  cursor: pointer;
+  padding:0;
+  width: 60px;
+  height: 60px;
+}
+
+.paint .top-line{
+  animation-name: top-line-animation-paint;
+}
+.paint .right-line{
+  animation-name: right-line-animation-paint;
+}
+.paint .left-line{
+  animation-name: left-line-animation-paint;
+}
+.paint .bottom-line{
+  animation-name: bottom-line-animation-paint;
+}
+
+.top-line{
+  animation-name: top-line-animation;
+}
+.right-line{
+  animation-name: right-line-animation;
+}
+.left-line{
+  animation-name: left-line-animation;
+}
+.bottom-line{
+  animation-name: bottom-line-animation;
+}
+
+@keyframes top-line-animation-paint {
+  50%, 100%{
+    margin: 0 auto;
+    transform:translateY(2px) rotate(-45deg);
+  }
 }
