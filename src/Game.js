@@ -107,6 +107,7 @@ class Game extends Component {
           onClick={()=>this.hadleMode()}
             
           />
+        
       </div>
     );
   }
