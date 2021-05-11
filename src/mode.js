@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 class Mode extends Component{
     render(){
         return(
-            <button className= "modeButton" >
-                <span className = "span top-line paint"></span>
+            <button className= "modeButton">
+                <span className = "span paint top-line"></span>
                 <span className = "span right-line"></span>
                 <span className = "span left-line"></span>
                 <span className = "span bottom-line"></span>
