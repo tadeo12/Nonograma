@@ -23,8 +23,10 @@ class Mode extends Component{
     
     render(){
         return(
+
             <button className= "modeButton" onClick={this.handleClick}>
                 <span className = "span top-line"></span>
+
                 <span className = "span right-line"></span>
                 <span className = "span left-line"></span>
                 <span className = "span bottom-line"></span>
