@@ -104,7 +104,8 @@ class Game extends Component {
     }
     
     return (
-      <div className="game">
+      <React.Fragment>
+        <div className="game">
         <Board
           grid={this.state.grid}
           rowClues={this.state.rowClues}
@@ -112,17 +113,22 @@ class Game extends Component {
           onClick={(i, j) => this.handleClick(i,j)}
           filaSat={this.state.filaSat}
           colSat={this.state.colSat}
+          
         />
-        
-          <Mode
-            // onClick = {this.handleClick()}
-          />
+          <br></br>
+          <div className= "barraInf">
+            <Mode
+              // onClick = {this.handleClick()}
+            />
+          </div>
         
         
           
 
         
       </div>
+      </React.Fragment>
+      
       
     );
   }
