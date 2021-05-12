@@ -113,9 +113,12 @@ class Game extends Component {
           filaSat={this.state.filaSat}
           colSat={this.state.colSat}
         />
-        <Mode
-            
+        
+          <Mode
+            // onClick = {this.handleClick()}
           />
+        
+        
           
 
         

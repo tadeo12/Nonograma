@@ -7,7 +7,7 @@ class Clue extends Component {
         //console.log(this.props.satisface);
 
         return (
-            <div className={this.props.satisface==1?"clue clueSatisface":"clue"} >
+            <div className={this.props.satisface===1?"clue clueSatisface":"clue"} >
                 {clue.map((num, i) =>
                     <div key={i}>
                         {num}

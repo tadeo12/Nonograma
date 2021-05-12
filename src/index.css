@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background-color: rgb(243, 211, 141);
   
 }
 
@@ -9,7 +10,7 @@ body {
   border: 1px solid rgb(0, 0, 0);
   font-size: 24px;
   font-weight: bold;
-  text-decoration-color: rgb(255, 0, 0) ;
+  text-shadow: rgb(230, 126, 57) ;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
@@ -18,7 +19,7 @@ body {
 }
 
 .paintedSquare{
-  background: rgb(61, 60, 60) ;
+  background: rgb(230, 126, 57);
   font-size: 0px;
 }
 
@@ -51,13 +52,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #3bd9f5;
+  
+  background: #e07f2f;
   border-radius: 8px;
   margin: 5px;
+
+  text-decoration-color: #4f3aad ;
 }
 
 .clueSatisface {
-  background: #9ee6e2 ;
+  background: #ecd5a3 ;
 }
 
 .clue div {
@@ -70,7 +74,8 @@ body {
 
 .game {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 
 .gameInfo {
@@ -90,12 +95,13 @@ body {
 }
 
 .modeButton{
-  background-color: crimson; 
+  background-color: rgb(230, 126, 57); 
   border: 0;
   cursor: pointer;
   padding:0;
   width: 60px;
   height: 60px;
+  align-items: center;
 }
 
 .paint .top-line{
@@ -127,6 +133,24 @@ body {
 @keyframes top-line-animation-paint {
   50%, 100%{
     margin: 0 auto;
-    transform:translateY(2px) rotate(-45deg);
+    transform:translateY(-15px) ;
+  }
+}
+@keyframes left-line-animation-paint {
+  50%, 100%{
+    margin: 0 auto;
+    transform:translateX(-18px) rotate(90deg);
+  }
+}
+@keyframes right-line-animation-paint {
+  50%, 100%{
+    margin: 0 auto;
+    transform:translateX(18px) rotate(-90deg);
+  }
+}
+@keyframes bottom-line-animation-paint {
+  50%, 100%{
+    margin: 0 auto;
+    transform:translateY(15px);
   }
 }
