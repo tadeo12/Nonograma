@@ -15,6 +15,7 @@ class Game extends Component {
       colClues: null,
       filaSat: null,
       colSat: null,
+      gano: false,
       waiting: false,
       modo: "#"
     };
@@ -39,6 +40,8 @@ class Game extends Component {
       }
     });
   }
+
+  
 
   handleClick(i, j) {
     // No action on click if we are waiting.
@@ -68,9 +71,21 @@ class Game extends Component {
           grid: response['GrillaRes'],
           filaSat: filAux,
           colSat: colAux,
-          waiting: false
+          waiting: false,
         })
- 
+        const lf=this.state.filaSat.length;
+        const lc=this.state.colSat.length;
+        let ganoAux=true
+        for(let i=0;i<lf && ganoAux;i++){
+          ganoAux=(this.state.filaSat[i]==1);
+        }
+        for(let i=0;i<lc && ganoAux;i++){
+          ganoAux=(this.state.colSat[i]==1);
+        }
+        this.setState({
+            gano:ganoAux
+        })
+        
    
       } else {
         this.setState({
@@ -108,14 +123,16 @@ class Game extends Component {
           colSat={this.state.colSat}          
         />
         <br></br>
-        <div className= "barraInf">
-          <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"}</h3>
+        <div  className= "barraInferior">
+          <h1>{this.state.gano === true? "gano" : "keep playing!"}</h1>
+          <div className= "barraModo">
+            <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"}</h3>
             <Mode         
               modo = {this.state.modo}     
               onClick = {(modo) => this.handleMode(this.state.modo)}
             />
+          </div>
         </div>
-       
       </div>
      
            

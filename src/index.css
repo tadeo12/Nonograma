@@ -15,12 +15,22 @@ body {
  
 }
 
-.barraInf{ 
+.barraInferior{ 
+  align-items: center; 
+  display: -webkit-inline-flex;
+  flex-direction: row;
+  /* margin-left:50%; */
+  text-align: center;
+  
+  
+}
+
+.barraModo{ 
   align-items: center; 
   flex-direction: column;
-  margin-left:50%;
-  background-color: darkcyan;
+   margin-left:30%; 
   display: flex;
+  
 }
 
 .square {
@@ -94,8 +104,6 @@ body {
   flex-direction: column;
   
 }
-
-
 
 .span{
   border-radius: 5px;
