@@ -1,6 +1,7 @@
 :- module(proylcc,
 	[  
 		put/8
+		
 	]).
 
 :-use_module(library(lists)).

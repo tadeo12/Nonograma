@@ -15,16 +15,12 @@ class Game extends Component {
       colClues: null,
       filaSat: null,
       colSat: null,
-      waiting: false
+      waiting: false,
+      modo: "#"
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
-
-    
-    
-  
-
   }
 
   handlePengineCreate() {
@@ -55,10 +51,10 @@ class Game extends Component {
     const squaresS = JSON.stringify(this.state.grid).replaceAll('"_"', "_"); // Remove quotes for variables.
     const pistasF =JSON.stringify(this.state.rowClues);
     const pistasC =JSON.stringify(this.state.colClues);
+    const contenido = JSON.stringify(this.state.modo);    
 
-    const queryS = 'put("#", [' + i + ',' + j + ']' 
-    + ','+ pistasF+','+pistasC+',' + squaresS + ', GrillaRes, FilaSat, ColSat)';
-
+    const queryS = 'put('+contenido+', [' + i + ',' + j + '],'+ pistasF+','+pistasC+',' + squaresS + ', GrillaRes, FilaSat, ColSat)';
+    
     this.setState({
       waiting: true
     });
@@ -74,62 +70,55 @@ class Game extends Component {
           colSat: colAux,
           waiting: false
         })
-        
-      /*
-        this.state.colSat[j]= response['ColSat'];
-        console.log(this.state.filaSat[i]+','+this.state.colSat[j])*/
-        
+ 
+   
       } else {
         this.setState({
           waiting: false
           
         });
-        alert("falla");
       }
     });
   }
 
-  handleMode(){
-     alert("mode");
+  handleMode(mod){            
+    let aux = document.getElementById("modeId");
+    mod === "#" ? mod = "X" : mod = "#"; 
+    aux.className === "modeButton"? aux.className= "modeButton paint"  : aux.className = "modeButton"
+    
+    this.setState({
+       modo : mod
+    });
   }
   
-  hola(mode){
-    //const nav = document.querySelector('modeButton');
-    mode.classList.toggle('paint');
- }
-
   render() {
     if (this.state.grid === null) {
       return null;
     }
-    
+   
     return (
-      <React.Fragment>
-        <div className="game">
+      <div className="game">
+        <h2> Nonogram</h2>        
         <Board
           grid={this.state.grid}
           rowClues={this.state.rowClues}
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
           filaSat={this.state.filaSat}
-          colSat={this.state.colSat}
-          
+          colSat={this.state.colSat}          
         />
-          <br></br>
-          <div className= "barraInf">
-            <Mode
-              // onClick = {this.handleClick()}
+        <br></br>
+        <div className= "barraInf">
+          <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"}</h3>
+            <Mode         
+              modo = {this.state.modo}     
+              onClick = {(modo) => this.handleMode(this.state.modo)}
             />
-          </div>
-        
-        
-          
-
-        
+        </div>
+       
       </div>
-      </React.Fragment>
-      
-      
+     
+           
     );
   }
 
