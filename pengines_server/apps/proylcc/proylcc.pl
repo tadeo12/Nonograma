@@ -1,6 +1,6 @@
 :- module(proylcc,
 	[  
-		put/8
+		put/8, satisface/2
 		
 	]).
 

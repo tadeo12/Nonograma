@@ -20,10 +20,38 @@ class Game extends Component {
       modo: "#"
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handlePengineCreate = this.handlePengineCreate.bind(this);    
+    this.handlePengineCreate = this.handlePengineCreate.bind(this);
+    // this.verificarPistas=this.verificarPistas.bind(this);
+    // this.finalizoJuego=this.finalizoJuego.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
 
+  verificarPistas(){
+    let queryS;
+    let fila, pistaF;
+    let filAux=this.state.filaSat;
+    let colAux=this.state.colSat;
+    
+    for(let i = 0 ; i < this.state.grid.length ; i++){ 
+      fila = JSON.stringify(this.state.grid[i]).replaceAll('"_"', "_");
+      pistaF = JSON.stringify(this.state.rowClues[i]);
+      queryS = 'satisface('+pistaF+','+fila+')';
+      
+      this.pengine.query(queryS, (success, response) => {
+        console.log(queryS);
+        if (success) {
+
+           filAux[i] = 1       
+        }
+        console.log(filAux[i]);
+      });
+    }
+    this.setState({
+          filaSat: filAux,
+    });
+      
+  }
+  
   handlePengineCreate() {
     const queryS = 'init(PistasFilas, PistasColumnas, Grilla)';
     this.pengine.query(queryS, (success, response) => {
@@ -35,13 +63,25 @@ class Game extends Component {
           filaSat: [].constructor(response['PistasFilas'].length),
           colSat: [].constructor(response['PistasColumnas'].length)
         });
-        verificarPistasInicio();
-      }
-    });
+       this.verificarPistas();
+       this.forceUpdate();
+    }});
+
   }
 
-  verificarPistasInicio(){
-    
+  finalizoJuego(){
+    const lf=this.state.filaSat.length;
+        const lc=this.state.colSat.length;
+        let ganoAux=true
+        for(let i=0;i<lf && ganoAux;i++){
+          ganoAux=(this.state.filaSat[i]===1);
+        }
+        for(let i=0;i<lc && ganoAux;i++){
+          ganoAux=(this.state.colSat[i]===1);
+        }
+        this.setState({
+            gano:ganoAux
+        })
   }
 
   handleClick(i, j) {
@@ -74,19 +114,8 @@ class Game extends Component {
           colSat: colAux,
           waiting: false,
         })
-        const lf=this.state.filaSat.length;
-        const lc=this.state.colSat.length;
-        let ganoAux=true
-        for(let i=0;i<lf && ganoAux;i++){
-          ganoAux=(this.state.filaSat[i]==1);
-        }
-        for(let i=0;i<lc && ganoAux;i++){
-          ganoAux=(this.state.colSat[i]==1);
-        }
-        this.setState({
-            gano:ganoAux
-        })
         
+        this.finalizoJuego();
    
       } else {
         this.setState({
