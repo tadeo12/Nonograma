@@ -5,6 +5,7 @@ body {
   align-items: center;
   display:flex;
   flex-direction: column;
+  margin: 0px auto;
   
 }
 
@@ -12,7 +13,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
 
 .barraInferior{ 
@@ -39,10 +39,11 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: rgb(230, 126, 57) ;
-  margin-right: -1px;
-  margin-top: -1px;
+  margin-right: 1px;
+  margin-top: 1px;
   padding: 0;
   text-align: center;
+  /* border-radius: 20%; */
 
 }
 
@@ -113,7 +114,7 @@ body {
   height: 10%;
   width: 60%;  
   animation-duration: 2s;
-  animation-fill-mode: both; 
+  animation-fill-mode: forwards; 
 }
 
 .modeButton{
@@ -130,85 +131,95 @@ body {
 .paint .top-line{
   animation-name: top-line-animation-paint;
   margin: 0 auto;
-  transform:translateY(-9px) ;
+  transform:translateY(-8px) ;
 }
 .paint .right-line{
   animation-name: right-line-animation-paint;
   margin: 0 auto;
-  transform:translateX(18px) translateY(2px) rotate(-90deg);
+  transform:translateX(15px) translateY(3px) rotate(90deg);
 }
 .paint .left-line{
   animation-name: left-line-animation-paint;
   margin: 0 auto;
-  transform:translateX(-17px) translateY(-2px)rotate(90deg);
+  transform:translateX(-15px) translateY(-3px)rotate(90deg);
 }
 .paint .bottom-line{
   animation-name: bottom-line-animation-paint; 
   margin: 0 auto;
-  transform:translateY(10px);
+  transform:translateY(8px);
 }
 
 .top-line{
   animation-name: top-line-animation;
+  transform: translateY(17px) rotate(-45deg);
 }
 .right-line{
   animation-name: right-line-animation;
+  transform: translateY(5px) rotate(45deg);
 }
 .left-line{
   animation-name: left-line-animation;
+  transform: translateY(-5px)rotate(45deg);
 }
 .bottom-line{
   animation-name: bottom-line-animation;
+  transform: translateY(-17px) rotate(-45deg);
 }
 
 /* -----------CUADRADO-------------------- */
 @keyframes top-line-animation-paint {
-  50%, 100%{
+  50%{transform:translateY(-8px) ;}
+  /* 50%, 100%{
     margin: 0 auto;
     transform:translateY(-9px) ;
-  }
+  } */
+  /* 100%{
+    transform: rotate(-45deg) translateY(275%);
+  } */
+  /* 100%{
+    transform:translateY(-275%) ;
+  } */
+ 
 }
 @keyframes left-line-animation-paint {
-  50%, 100%{
+  /* 50%, 100%{
     margin: 0 auto;
     transform:translateX(-17px) translateY(-2px)rotate(90deg);
-  }
+  } */
 }
 @keyframes right-line-animation-paint {
-  50%, 100%{
+  /* 50%, 100%{
     margin: 0 auto;
     transform:translateX(18px) translateY(2px) rotate(-90deg);
-  }
+  } */
 }
 @keyframes bottom-line-animation-paint {
-  50%, 100%{
+  /* 50%, 100%{
     margin: 0 auto;
     transform:translateY(10px);
-  }
+  } */
 }
 /* -----------CRUZ-------------------- */
 @keyframes top-line-animation {
-  50%,100%{
-    
-    transform:translateY(275%) rotate(45deg);
-  }
+  /* 0%{transform:translateY(275%) } */
+  /* 50%{transform:  translateY(%),rotate(-45deg)} */
   
 }
 @keyframes left-line-animation {
-  50%,100%{
+  /* 50%,100%{
     
     transform:translateX(-10%) rotate(-45deg);
-  }
+  } */
 }
 @keyframes right-line-animation {
-  50%,100%{
+  /* 50%,100%{
     
     transform:translateX(10%) rotate(-45deg);
-  }
+  } */
 }
 @keyframes bottom-line-animation {
-  50%,100%{
+  /* 50%,100%{
     
     transform:translateY(-275%) rotate(45deg);
-  }
+  } */
 }
