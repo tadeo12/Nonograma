@@ -51,6 +51,15 @@ body {
 .paintedSquare{
   background: rgb(230, 126, 57);
   font-size: 0px;
+  animation-name: sq;
+  animation-duration: 10s;
+  animation-fill-mode: forwards; 
+  
+}
+
+@keyframes sq{
+  0%{color: white;}
+  10%{color: rgb(255, 0, 0);}
 }
 
 .square:focus {
@@ -113,7 +122,7 @@ body {
   margin: 5px auto;
   height: 10%;
   width: 60%;  
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-fill-mode: forwards; 
   
 }
@@ -129,22 +138,22 @@ body {
   border-radius: 13px;
 }
 
-.paint .top-line{
+.paint-top-line{
   animation-name: top-line-animation-paint;
   margin: 0 auto;
   transform:translateY(-8px) ;
 }
-.paint .right-line{
+.paint-right-line{
   animation-name: right-line-animation-paint;
   margin: 0 auto;
   transform:translateX(15px) translateY(3px) rotate(90deg);
 }
-.paint .left-line{
+.paint-left-line{
   animation-name: left-line-animation-paint;
   margin: 0 auto;
   transform:translateX(-15px) translateY(-3px)rotate(90deg);
 }
-.paint .bottom-line{
+.paint-bottom-line{
   animation-name: bottom-line-animation-paint; 
   margin: 0 auto;
   transform:translateY(8px);
@@ -169,58 +178,27 @@ body {
 
 /* -----------CUADRADO-------------------- */
 @keyframes top-line-animation-paint {
-  50%{transform:translateY(-8px) ;}
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateY(-9px) ;
-  } */
-  /* 100%{
-    transform: rotate(-45deg) translateY(275%);
-  } */
-  /* 100%{
-    transform:translateY(-275%) ;
-  } */
- 
+  0%{transform: translateY(17px) rotate(-45deg);}
 }
 @keyframes left-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateX(-17px) translateY(-2px)rotate(90deg);
-  } */
+  0%{transform: translateY(-5px)rotate(45deg);}
 }
 @keyframes right-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateX(18px) translateY(2px) rotate(-90deg);
-  } */
+ 0%{transform: translateY(5px) rotate(45deg);}
 }
 @keyframes bottom-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateY(10px);
-  } */
+  0%{transform: translateY(-17px) rotate(-45deg);}
 }
 /* -----------CRUZ-------------------- */
 @keyframes top-line-animation {
-  /* 0%{transform:translateY(275%) } */
-  /* 50%{transform:  translateY(%),rotate(-45deg)} */
-  
+  0%{transform:translateY(-8px) ;margin: 0 auto;}
 }
 @keyframes left-line-animation {
-  /* 50%,100%{
-    
-    transform:translateX(-10%) rotate(-45deg);
-  } */
+  0%{transform:translateX(-15px) translateY(-3px)rotate(90deg);margin: 0 auto;}
 }
 @keyframes right-line-animation {
-  /* 50%,100%{
-    
-    transform:translateX(10%) rotate(-45deg);
-  } */
+  0%{transform:translateX(15px) translateY(3px) rotate(90deg);margin: 0 auto;}
 }
 @keyframes bottom-line-animation {
-  /* 50%,100%{
-    
-    transform:translateY(-275%) rotate(45deg);
-  } */
+  0%{transform:translateY(8px);margin: 0 auto;}
 }
