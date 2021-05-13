@@ -35,13 +35,14 @@ class Game extends Component {
           filaSat: [].constructor(response['PistasFilas'].length),
           colSat: [].constructor(response['PistasColumnas'].length)
         });
-        
-
+        verificarPistasInicio();
       }
     });
   }
 
-  
+  verificarPistasInicio(){
+    
+  }
 
   handleClick(i, j) {
     // No action on click if we are waiting.
