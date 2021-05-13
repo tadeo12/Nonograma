@@ -44,10 +44,8 @@ body {
   
   padding: 0;
   text-align: center;
-  /* border-radius: 20%; */
   font-family:cursive,bolder;
   
-
 }
 
 .paintedSquare{
@@ -61,7 +59,6 @@ body {
 
 .board {
   display: grid;
-  
 }
 
 .horizontal {
@@ -118,6 +115,7 @@ body {
   width: 60%;  
   animation-duration: 2s;
   animation-fill-mode: forwards; 
+  
 }
 
 .modeButton{

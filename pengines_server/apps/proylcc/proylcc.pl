@@ -43,7 +43,7 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	(FilaSat is 1 ,satisface(PistasFila,NewRow);FilaSat is 0),
 
 	% se obtiene la columna en forma de lista
-	hacerColumna(NewGrilla,ColN,Col),
+	getColumn(NewGrilla,ColN,Col),
 	
 	getElement(PistasColumnas,ColN,PistasColumna),
 	(ColSat is 1, satisface(PistasColumna,Col); ColSat is 0).
@@ -51,8 +51,8 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 
 % hacerColumna(+Xs,+ColN,-Col) 
 
-hacerColumna([],_ColN,[]).
-hacerColumna([FilaActual|Filas],ColN,[Y|Ys]):-getElement(FilaActual,ColN,Y),hacerColumna(Filas,ColN,Ys).
+getColumn([],_ColN,[]).
+getColumn([FilaActual|Filas],ColN,[Y|Ys]):-getElement(FilaActual,ColN,Y),getColumn(Filas,ColN,Ys).
 
 getElement([X|_Xs],0,X).
 getElement([_X|Xs],N,E):- N1 is N-1, getElement(Xs,N1,E).
