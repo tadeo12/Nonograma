@@ -20,7 +20,7 @@ class Game extends Component {
       modo: "#"
     };
     this.handleClick = this.handleClick.bind(this);
-    this.handlePengineCreate = this.handlePengineCreate.bind(this);
+    this.handlePengineCreate = this.handlePengineCreate.bind(this);    
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
 
