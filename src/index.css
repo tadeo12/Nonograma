@@ -36,15 +36,14 @@ body {
 .square {
   background: #fff ;
   border: 1px solid rgb(0, 0, 0);
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 30px;
+  font-weight:bolder;
   color: rgb(230, 126, 57) ;
   margin-right: 1px;
   margin-top: 1px;
   padding: 0;
-  text-align: center;
-  /* border-radius: 20%; */
-
+  text-align:center;
+ 
 }
 
 .paintedSquare{
@@ -115,6 +114,7 @@ body {
   width: 60%;  
   animation-duration: 2s;
   animation-fill-mode: forwards; 
+  
 }
 
 .modeButton{
