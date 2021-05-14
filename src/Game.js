@@ -38,12 +38,12 @@ class Game extends Component {
       queryS = 'satisface('+pistaF+','+fila+')';
       
       this.pengine.query(queryS, (success, response) => {
-        console.log(queryS);
+      
         if (success) {
 
            filAux[i] = 1       
         }
-        console.log(filAux[i]);
+        
       });
     }
     this.setState({
@@ -143,7 +143,7 @@ class Game extends Component {
    
     return (
       <div className="game">
-        <h2> Nonogram</h2>        
+        <h2>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
         <Board
           grid={this.state.grid}
           rowClues={this.state.rowClues}
@@ -152,11 +152,12 @@ class Game extends Component {
           filaSat={this.state.filaSat}
           colSat={this.state.colSat}          
         />
-        <br></br>
+        
+        
         <div  className= "barraInferior">
-          <h1>{this.state.gano === true? "gano" : "keep playing!"}</h1>
-          <div className= "barraModo">
-            <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"}</h3>
+          <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
+          <div className= "barraBotones">
+            <button className= "button restartButton" onClick={()=>this.handlePengineCreate()} > </button>
             <Mode         
               modo = {this.state.modo}     
               onClick = {(modo) => this.handleMode(this.state.modo)}

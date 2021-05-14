@@ -17,20 +17,27 @@ body {
 
 .barraInferior{ 
   align-items: center; 
-  display: -webkit-inline-flex;
-  flex-direction: row;
-  /* margin-left:50%; */
+  display:block;
+  /* flex-direction: row; */
+  
   text-align: center;
+  position: sticky;
+  
+}
+
+.barraBotones{ 
   
   
 }
 
-.barraModo{ 
-  align-items: center; 
-  flex-direction: column;
-   margin-left:30%; 
-  display: flex;
-  
+.restartButton{
+  background: url(restart.png) white;
+  /* padding-top: 10%; */
+  background-position: center;
+  background-color: white;
+  background-size:75% ;
+  background-repeat: no-repeat;
+  color: white;
 }
 
 .square {
@@ -41,25 +48,37 @@ body {
   color: rgb(230, 126, 57) ;
   margin-right: 1px;
   margin-top: 1px;
+  cursor:pointer;
   
   padding: 0;
   text-align: center;
   font-family:cursive;
-  
+}
+.cruzSquare {
+ 
+  animation-name: cruzAnimation;
+  animation-duration: 1.5s;
+  animation-fill-mode: both; 
+}
+@keyframes cruzAnimation{
+  0%{color: white;}
+  100%{color:rgb(230, 126, 57);}
 }
 
 .paintedSquare{
-  background: rgb(230, 126, 57);
+
+  /* background: rgb(230, 126, 57); */
   font-size: 0px;
-  animation-name: sq;
-  animation-duration: 10s;
-  animation-fill-mode: forwards; 
+  animation-name: paintAnimation;
+  animation-duration: 1.5s;
+  animation-fill-mode:both;
+
   
 }
 
-@keyframes sq{
-  0%{color: white;}
-  10%{color: rgb(255, 0, 0);}
+@keyframes paintAnimation{
+  0%{background: white;}
+  100%{background:rgb(230, 126, 57);}
 }
 
 .square:focus {
@@ -68,6 +87,7 @@ body {
 
 .board {
   display: grid;
+
 }
 
 .horizontal {
@@ -77,6 +97,7 @@ body {
 .vertical {
   display: flex;
   flex-direction: column;
+  transform: translateX(-15%);
 }
 
 .rowClues {
@@ -127,15 +148,17 @@ body {
   
 }
 
-.modeButton{
+.button{
   background-color: rgb(230, 126, 57); 
   border: 0;
-  cursor: pointer;
+  cursor:pointer;
   padding:0;
   width: 60px;
   height: 60px;
   align-items: center;
   border-radius: 13px;
+  position: sticky;
+  box-shadow: 5px 5px rgb(214, 88, 4);
 }
 
 .paint-top-line{
