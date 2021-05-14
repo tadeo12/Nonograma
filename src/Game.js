@@ -89,6 +89,9 @@ class Game extends Component {
     if (this.state.waiting) {
       return;
     }
+    if (this.state.gano) {
+      return;
+    }
 
     // Build Prolog query to make the move, which will look as follows:
     // put("#",[0,1],[], [],[["X",_,_,_,_],["X",_,"X",_,_],["X",_,_,_,_],["#","#","#",_,_],[_,_,"#","#","#"]], GrillaRes, FilaSat, ColSat)
