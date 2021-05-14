@@ -1,18 +1,27 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
-  background-color: rgb(243, 211, 141);
+  /* background-color: rgb(243, 211, 141); */
   align-items: center;
   display:flex;
   flex-direction: column;
   margin: 0px auto;
-  
+  /* background-image: url(https://image.freepik.com/vector-gratis/lindo-gato-gatito-dibujos-animados-doodle-patrones-fisuras_40564-385.jpg); */
+  /* background-image: url(https://i.pinimg.com/236x/e8/54/fb/e854fb715fd63fdb4638b4d35ec4c71e.jpg); */
+  background-image: url(https://img.freepik.com/vector-gratis/dibujos-animados-lindo-gato-gordito-doodle-patrones-fisuras_40564-314.jpg?size=338&ext=jpg);
+  /* background-image: url(https://i.pinimg.com/564x/25/30/25/253025ef2df249f7fc051cab5de0852b.jpg); */
+
 }
 
 .game {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0px auto;
+  /* background:rgb(226, 177, 145); */
+  /* padding-left: 50% ;
+  padding-right: 30% ;
+  padding: 20%;  */
 }
 
 .barraInferior{ 
@@ -41,12 +50,17 @@ body {
  
 }
 
+.squareGano{
+  opacity: 0.5;
+  cursor:none;
+}
+
 .square {
   background: #fff ;
   border: 1px solid rgb(0, 0, 0);
   font-size: 30px;
   font-weight: bolder;
-  color: rgb(230, 126, 57) ;
+  color: rgb(226, 177, 145) ;
   margin-right: 1px;
   margin-top: 1px;
   cursor:pointer;
@@ -67,12 +81,13 @@ body {
 }
 
 .paintedSquare{
-
+  
   /* background: rgb(230, 126, 57); */
   font-size: 0px;
   animation-name: paintAnimation;
   animation-duration: 1s;
   animation-fill-mode:both;
+  
 
   
 }
@@ -88,6 +103,7 @@ body {
 
 .board {
   display: grid;
+ 
 
 }
 
@@ -115,7 +131,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  
   background: #e07f2f;
   border-radius: 8px;
   margin: 5px;
@@ -125,7 +140,10 @@ body {
 
 .clueSatisface {
   background: #ecd5a3 ;
+  opacity: 0.9;
   color: #8a869e ;
+  border: 1px  solid #e07f2f 
+
 }
 
 .clue div {

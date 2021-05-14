@@ -30,7 +30,7 @@ class Game extends Component {
     let queryS;
     let fila, pistaF;
     
-    let colAux=this.state.colSat;
+    // let colAux=this.state.colSat;
     
     for(let i = 0 ; i < this.state.grid.length ; i++){ 
       fila = JSON.stringify(this.state.grid[i]).replaceAll('"_"', "_");
@@ -62,7 +62,8 @@ class Game extends Component {
           rowClues: response['PistasFilas'],
           colClues: response['PistasColumnas'],
           filaSat: [].constructor(response['PistasFilas'].length),
-          colSat: [].constructor(response['PistasColumnas'].length)
+          colSat: [].constructor(response['PistasColumnas'].length),
+          gano: false
         });
        this.verificarPistas();
         // this.forceUpdate();
@@ -147,7 +148,7 @@ class Game extends Component {
     }
    
     return (
-      <div className="game">
+      <div className="game" >
         <h2>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
         <Board
           grid={this.state.grid}
@@ -155,7 +156,8 @@ class Game extends Component {
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
           filaSat={this.state.filaSat}
-          colSat={this.state.colSat}          
+          colSat={this.state.colSat}  
+          gano = {this.state.gano}       
         />
         
         
@@ -164,7 +166,8 @@ class Game extends Component {
           <div className= "barraBotones">
             <button className= "button restartButton" onClick={()=>this.handlePengineCreate()} > </button>
             <Mode         
-              modo = {this.state.modo}     
+              modo = {this.state.modo}   
+              gano = {this.state.gano}   
               onClick = {(modo) => this.handleMode(this.state.modo)}
             />
           </div>

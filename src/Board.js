@@ -54,6 +54,7 @@ class Board extends Component {
                                 <Square
                                     value={cell}
                                     onClick={() => this.props.onClick(i, j)}
+                                    gano =  {this.props.gano}
                                     key={i + j}
                                 />
                             )

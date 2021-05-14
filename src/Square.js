@@ -2,9 +2,16 @@ import React, {Component} from 'react';
 
 class Square extends Component {
     render() {
+        let val = this.props.value;
+        let win = this.props.gano;
+        
+        let pint = val === '#' ? " paintedSquare" : "";
+        let cru = val === 'X' ? " cruzSquare" : "";
+        let gan = win ? " squareGano" : "" ;
+
         return (
-            <button className={this.props.value==='#'?"square paintedSquare":(this.props.value==='X'?"square cruzSquare":"square")} onClick={this.props.onClick}>
-                {this.props.value !== '_' ? this.props.value : null }
+            <button className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
+                {val !== '_' ? val : null }
             </button>
         );
     }
