@@ -29,7 +29,7 @@ class Game extends Component {
   verificarPistas(){
     let queryS;
     let fila, pistaF;
-    let filAux=this.state.filaSat;
+    
     let colAux=this.state.colSat;
     
     for(let i = 0 ; i < this.state.grid.length ; i++){ 
@@ -38,17 +38,18 @@ class Game extends Component {
       queryS = 'satisface('+pistaF+','+fila+')';
       
       this.pengine.query(queryS, (success, response) => {
-      
         if (success) {
-
-           filAux[i] = 1       
+           let filAux=this.state.filaSat;
+           filAux[i] = 1   ;
+           console.log('verificar pista: '+filAux[i])    ;
+           this.setState({
+            filaSat: filAux
+            });
         }
         
       });
     }
-    this.setState({
-          filaSat: filAux,
-    });
+   
       
   }
   
@@ -64,7 +65,7 @@ class Game extends Component {
           colSat: [].constructor(response['PistasColumnas'].length)
         });
        this.verificarPistas();
-       this.forceUpdate();
+        // this.forceUpdate();
     }});
 
   }
@@ -87,6 +88,7 @@ class Game extends Component {
   handleClick(i, j) {
     // No action on click if we are waiting.
     if (this.state.waiting) {
+      alert('consulta en espera');
       return;
     }
 

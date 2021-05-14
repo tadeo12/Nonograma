@@ -17,16 +17,16 @@ body {
 
 .barraInferior{ 
   align-items: center; 
-  display:block;
-  /* flex-direction: row; */
-  
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  position: sticky;
+  
   
 }
 
 .barraBotones{ 
-  
+  display: flex;
   
 }
 
@@ -38,6 +38,7 @@ body {
   background-size:75% ;
   background-repeat: no-repeat;
   color: white;
+ 
 }
 
 .square {
@@ -57,7 +58,7 @@ body {
 .cruzSquare {
  
   animation-name: cruzAnimation;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode: both; 
 }
 @keyframes cruzAnimation{
@@ -70,7 +71,7 @@ body {
   /* background: rgb(230, 126, 57); */
   font-size: 0px;
   animation-name: paintAnimation;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
   animation-fill-mode:both;
 
   
@@ -156,8 +157,8 @@ body {
   width: 60px;
   height: 60px;
   align-items: center;
+  margin: 0 10px;
   border-radius: 13px;
-  position: sticky;
   box-shadow: 5px 5px rgb(214, 88, 4);
 }
 
