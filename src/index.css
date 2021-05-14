@@ -17,20 +17,27 @@ body {
 
 .barraInferior{ 
   align-items: center; 
-  display: -webkit-inline-flex;
-  flex-direction: row;
-  /* margin-left:50%; */
+  display:block;
+  /* flex-direction: row; */
+  
   text-align: center;
+  position: sticky;
+  
+}
+
+.barraBotones{ 
   
   
 }
 
-.barraModo{ 
-  align-items: center; 
-  flex-direction: column;
-   margin-left:30%; 
-  display: flex;
-  
+.restartButton{
+  background: url(restart.png) white;
+  /* padding-top: 10%; */
+  background-position: center;
+  background-color: white;
+  background-size:75% ;
+  background-repeat: no-repeat;
+  color: white;
 }
 
 .square {
@@ -41,16 +48,37 @@ body {
   color: rgb(230, 126, 57) ;
   margin-right: 1px;
   margin-top: 1px;
+  cursor:pointer;
   
   padding: 0;
   text-align: center;
   font-family:cursive;
-  
+}
+.cruzSquare {
+ 
+  animation-name: cruzAnimation;
+  animation-duration: 1.5s;
+  animation-fill-mode: both; 
+}
+@keyframes cruzAnimation{
+  0%{color: white;}
+  100%{color:rgb(230, 126, 57);}
 }
 
 .paintedSquare{
-  background: rgb(230, 126, 57);
+
+  /* background: rgb(230, 126, 57); */
   font-size: 0px;
+  animation-name: paintAnimation;
+  animation-duration: 1.5s;
+  animation-fill-mode:both;
+
+  
+}
+
+@keyframes paintAnimation{
+  0%{background: white;}
+  100%{background:rgb(230, 126, 57);}
 }
 
 .square:focus {
@@ -59,6 +87,7 @@ body {
 
 .board {
   display: grid;
+
 }
 
 .horizontal {
@@ -68,6 +97,7 @@ body {
 .vertical {
   display: flex;
   flex-direction: column;
+  transform: translateX(-15%);
 }
 
 .rowClues {
@@ -113,38 +143,41 @@ body {
   margin: 5px auto;
   height: 10%;
   width: 60%;  
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
+
+  animation-duration: 1s;
+  animation-fill-mode: forwards; 
   
 }
 
-.modeButton{
+.button{
   background-color: rgb(230, 126, 57); 
   border: 0;
-  cursor: pointer;
+  cursor:pointer;
   padding:0;
   width: 60px;
   height: 60px;
   align-items: center;
   border-radius: 13px;
+  position: sticky;
+  box-shadow: 5px 5px rgb(214, 88, 4);
 }
 
-.paint .top-line{
+.paint-top-line{
   animation-name: top-line-animation-paint;
   margin: 0 auto;
   transform:translateY(-8px) ;
 }
-.paint .right-line{
+.paint-right-line{
   animation-name: right-line-animation-paint;
   margin: 0 auto;
   transform:translateX(15px) translateY(3px) rotate(90deg);
 }
-.paint .left-line{
+.paint-left-line{
   animation-name: left-line-animation-paint;
   margin: 0 auto;
   transform:translateX(-15px) translateY(-3px)rotate(90deg);
 }
-.paint .bottom-line{
+.paint-bottom-line{
   animation-name: bottom-line-animation-paint; 
   margin: 0 auto;
   transform:translateY(8px);
@@ -169,58 +202,27 @@ body {
 
 /* -----------CUADRADO-------------------- */
 @keyframes top-line-animation-paint {
-  50%{transform:translateY(-8px) ;}
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateY(-9px) ;
-  } */
-  /* 100%{
-    transform: rotate(-45deg) translateY(275%);
-  } */
-  /* 100%{
-    transform:translateY(-275%) ;
-  } */
- 
+  0%{transform: translateY(17px) rotate(-45deg);}
 }
 @keyframes left-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateX(-17px) translateY(-2px)rotate(90deg);
-  } */
+  0%{transform: translateY(-5px)rotate(45deg);}
 }
 @keyframes right-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateX(18px) translateY(2px) rotate(-90deg);
-  } */
+ 0%{transform: translateY(5px) rotate(45deg);}
 }
 @keyframes bottom-line-animation-paint {
-  /* 50%, 100%{
-    margin: 0 auto;
-    transform:translateY(10px);
-  } */
+  0%{transform: translateY(-17px) rotate(-45deg);}
 }
 /* -----------CRUZ-------------------- */
 @keyframes top-line-animation {
-  /* 0%{transform:translateY(275%) } */
-  /* 50%{transform:  translateY(%),rotate(-45deg)} */
-  
+  0%{transform:translateY(-8px) ;margin: 0 auto;}
 }
 @keyframes left-line-animation {
-  /* 50%,100%{
-    
-    transform:translateX(-10%) rotate(-45deg);
-  } */
+  0%{transform:translateX(-15px) translateY(-3px)rotate(90deg);margin: 0 auto;}
 }
 @keyframes right-line-animation {
-  /* 50%,100%{
-    
-    transform:translateX(10%) rotate(-45deg);
-  } */
+  0%{transform:translateX(15px) translateY(3px) rotate(90deg);margin: 0 auto;}
 }
 @keyframes bottom-line-animation {
-  /* 50%,100%{
-    
-    transform:translateY(-275%) rotate(45deg);
-  } */
+  0%{transform:translateY(8px);margin: 0 auto;}
 }
