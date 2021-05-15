@@ -1,6 +1,6 @@
 :- module(proylcc,
 	[  
-		put/8, satisface/2
+		put/8, controlInicial/5
 		
 	]).
 
@@ -69,8 +69,18 @@ satisfacePista(0,[X|Xs],Xs):-var(X) ; X="X".%si llego a 0 la pista, la siguiente
 
 satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1, satisfacePista(N1, Xs,Res).
 
+longitud([],0).
+longitud([_X|Xs],N):- longitud(Xs,L),N is L+1.
 
+%controlInicial(+Grilla,+PistasFilas,+PistasColumnas,-LsatFila,-LsatCol)
+controlInicial(Grilla,PistasFilas,PistasColumnas,LsatFila,LsatCol):-satisfaceFila(Grilla,PistasFilas,LsatFila),satisfaceCol(Grilla,PistasColumnas,LsatCol,0).
 
+satisfaceFila([Fila|Filas], [PistasFila|Pistas],[1|Ys]):-satisface(PistasFila,Fila),satisfaceFila(Filas,Pistas,Ys).
+satisfaceFila([Fila|Filas], [PistasFila|Pistas],[0|Ys]):-not(satisface(PistasFila,Fila)),satisfaceFila(Filas,Pistas,Ys).
+
+satisfaceCol(_Grilla,[],[],_N).
+satisfaceCol(Grilla,[PistasCol|Pistas],[1|Ys],N):-X is N+1 ,satisfaceCol(Grilla,Pistas,Ys,X),getColumn(Grilla,N,Col),satisface(PistasCol,Col).
+satisfaceCol(Grilla,[PistasCol|Pistas],[0|Ys],N):-X is N+1 ,satisfaceCol(Grilla,Pistas,Ys,X),getColumn(Grilla,N,Col),not(satisface(PistasCol,Col)).
 
 
 

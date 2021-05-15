@@ -7,8 +7,8 @@ body {
   flex-direction: column;
   margin: 0px auto;
   /* background-image: url(https://image.freepik.com/vector-gratis/lindo-gato-gatito-dibujos-animados-doodle-patrones-fisuras_40564-385.jpg); */
-  /* background-image: url(https://i.pinimg.com/236x/e8/54/fb/e854fb715fd63fdb4638b4d35ec4c71e.jpg); */
-  background-image: url(https://img.freepik.com/vector-gratis/dibujos-animados-lindo-gato-gordito-doodle-patrones-fisuras_40564-314.jpg?size=338&ext=jpg);
+  background-image: url(https://i.pinimg.com/236x/e8/54/fb/e854fb715fd63fdb4638b4d35ec4c71e.jpg);
+  /* background-image: url(https://img.freepik.com/vector-gratis/dibujos-animados-lindo-gato-gordito-doodle-patrones-fisuras_40564-314.jpg?size=338&ext=jpg); */
   /* background-image: url(https://i.pinimg.com/564x/25/30/25/253025ef2df249f7fc051cab5de0852b.jpg); */
 
 }
@@ -47,7 +47,20 @@ body {
   background-size:75% ;
   background-repeat: no-repeat;
   color: white;
- 
+  
+}
+
+.restartButton:active{
+  animation-name: restartAnimation;
+  animation-duration: 2s;
+}
+
+@keyframes restartAnimation {
+  50%{
+    background-size: 50%;
+    transform: rotate(180deg);
+  }
+  
 }
 
 .squareGano{
@@ -142,8 +155,19 @@ body {
   background: #ecd5a3 ;
   opacity: 0.9;
   color: #8a869e ;
-  border: 1px  solid #e07f2f 
+  border: 1px  solid #e07f2f ;
+  animation-name: clueAnimation;
+  animation-duration: 1s;
+  animation-direction: both;
+}
 
+@keyframes clueAnimation{
+  0%{
+    background: #e07f2f;
+    opacity: 1;
+    color: black;
+
+  }
 }
 
 .clue div {
