@@ -6,11 +6,8 @@ body {
   display:flex;
   flex-direction: column;
   margin: 0px auto;
-  /* background-image: url(https://image.freepik.com/vector-gratis/lindo-gato-gatito-dibujos-animados-doodle-patrones-fisuras_40564-385.jpg); */
-  /* background-image: url(https://i.pinimg.com/236x/e8/54/fb/e854fb715fd63fdb4638b4d35ec4c71e.jpg); */
-  background-image: url(https://img.freepik.com/vector-gratis/dibujos-animados-lindo-gato-gordito-doodle-patrones-fisuras_40564-314.jpg?size=338&ext=jpg);
-  /* background-image: url(https://i.pinimg.com/564x/25/30/25/253025ef2df249f7fc051cab5de0852b.jpg); */
-
+  background-image: url(fondo.jpg);
+  background-size: 19%;
 }
 
 .game {
@@ -219,6 +216,9 @@ body {
   box-shadow: 5px 5px rgb(214, 88, 4);
 }
 
+.buttonGano{
+  background-color: rgb(230, 0, 57) !important; 
+}
 .paint-top-line{
   animation-name: top-line-animation-paint;
   margin: 0 auto;
