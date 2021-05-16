@@ -69,19 +69,18 @@ satisfacePista(0,[X|Xs],Xs):-var(X) ; X="X".%si llego a 0 la pista, la siguiente
 
 satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1, satisfacePista(N1, Xs,Res).
 
-longitud([],0).
-longitud([_X|Xs],N):- longitud(Xs,L),N is L+1.
+
 
 %controlInicial(+Grilla,+PistasFilas,+PistasColumnas,-LsatFila,-LsatCol)
-controlInicial(Grilla,PistasFilas,PistasColumnas,LsatFila,LsatCol):-satisfaceFila(Grilla,PistasFilas,LsatFila),satisfaceCol(Grilla,PistasColumnas,LsatCol,0).
+controlInicial(Grilla,PistasFilas,PistasColumnas,LsatFila,LsatCol):-satisfaceFila(Grilla,PistasFilas,LsatFila),satisfaceCol(Grilla,PistasColumnas,0,LsatCol).
 
 satisfaceFila([],[],[]).
 satisfaceFila([Fila|Filas], [PistasFila|Pistas],[1|Ys]):-satisface(PistasFila,Fila),satisfaceFila(Filas,Pistas,Ys).
 satisfaceFila([Fila|Filas], [PistasFila|Pistas],[0|Ys]):-not(satisface(PistasFila,Fila)),satisfaceFila(Filas,Pistas,Ys).
 
-satisfaceCol(_Grilla,[],[],_N).
-satisfaceCol(Grilla,[PistasCol|Pistas],[1|Ys],N):-X is N+1 ,satisfaceCol(Grilla,Pistas,Ys,X),getColumn(Grilla,N,Col),satisface(PistasCol,Col).
-satisfaceCol(Grilla,[PistasCol|Pistas],[0|Ys],N):-X is N+1 ,satisfaceCol(Grilla,Pistas,Ys,X),getColumn(Grilla,N,Col),not(satisface(PistasCol,Col)).
+satisfaceCol(_Grilla,[],_NumCol,[]).
+satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[1|Ys]):-NumColSig is NumCol+1 ,satisfaceCol(Grilla,Pistas,NumColSig,Ys),getColumn(Grilla,NumCol,Col),satisface(PistasCol,Col).
+satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[0|Ys]):-NumColSig is NumCol+1 ,satisfaceCol(Grilla,Pistas,NumColSig,Ys),getColumn(Grilla,NumCol,Col),not(satisface(PistasCol,Col)).
 
 
 
