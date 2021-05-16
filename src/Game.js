@@ -59,7 +59,6 @@ class Game extends Component {
   handleClick(i, j) {
     // No action on click if we are waiting.
     if (this.state.waiting) {
-      alert('consulta en espera');
       return;
     }
     if (this.state.gano) {
