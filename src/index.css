@@ -24,6 +24,30 @@ body {
   padding: 20%;  */
 }
 
+#titulo{
+  background-color: rgb(230, 126, 57);
+  opacity: 0.8;
+  border-radius: 13px ;
+  border: 1px  solid #ecd5a3;
+  color: white;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
+#modoMarcado{
+  background-color: #ecd5a3;
+  /* opacity: 0.8; */
+  border-radius: 13px ;
+  border: 1px  solid #e07f2f ;
+  color: rgb(202, 88, 12);
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 3%;
+  padding-left: 3%;
+}
+
 .barraInferior{ 
   align-items: center; 
   display:flex;
@@ -52,7 +76,7 @@ body {
 
 .squareGano{
   opacity: 0.5;
-  cursor:none;
+  cursor:auto !important;
 }
 
 .square {
@@ -64,11 +88,11 @@ body {
   margin-right: 1px;
   margin-top: 1px;
   cursor:pointer;
-  
   padding: 0;
   text-align: center;
   font-family:cursive;
 }
+
 .cruzSquare {
  
   animation-name: cruzAnimation;
@@ -114,7 +138,7 @@ body {
 .vertical {
   display: flex;
   flex-direction: column;
-  transform: translateX(-15%);
+  transform: translateX(-10%);
 }
 
 .rowClues {

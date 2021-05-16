@@ -75,6 +75,7 @@ longitud([_X|Xs],N):- longitud(Xs,L),N is L+1.
 %controlInicial(+Grilla,+PistasFilas,+PistasColumnas,-LsatFila,-LsatCol)
 controlInicial(Grilla,PistasFilas,PistasColumnas,LsatFila,LsatCol):-satisfaceFila(Grilla,PistasFilas,LsatFila),satisfaceCol(Grilla,PistasColumnas,LsatCol,0).
 
+satisfaceFila([],[],[]).
 satisfaceFila([Fila|Filas], [PistasFila|Pistas],[1|Ys]):-satisface(PistasFila,Fila),satisfaceFila(Filas,Pistas,Ys).
 satisfaceFila([Fila|Filas], [PistasFila|Pistas],[0|Ys]):-not(satisface(PistasFila,Fila)),satisfaceFila(Filas,Pistas,Ys).
 
