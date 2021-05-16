@@ -21,8 +21,7 @@ class Game extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
-    // this.verificarPistas=this.verificarPistas.bind(this);
-    // this.finalizoJuego=this.finalizoJuego.bind(this);
+    this.handleMode = this.handleMode.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
 
@@ -43,17 +42,17 @@ class Game extends Component {
 
   finalizoJuego(){
     const lf=this.state.filaSat.length;
-        const lc=this.state.colSat.length;
-        let ganoAux=true
-        for(let i=0;i<lf && ganoAux;i++){
-          ganoAux=(this.state.filaSat[i]===1);
-        }
-        for(let i=0;i<lc && ganoAux;i++){
-          ganoAux=(this.state.colSat[i]===1);
-        }
-        this.setState({
-            gano:ganoAux
-        })
+    const lc=this.state.colSat.length;
+    let ganoAux=true
+    for(let i=0;i<lf && ganoAux;i++){
+      ganoAux=(this.state.filaSat[i]===1);
+    }
+    for(let i=0;i<lc && ganoAux;i++){
+      ganoAux=(this.state.colSat[i]===1);
+    }
+    this.setState({
+      gano:ganoAux
+    })
   }
 
   handleClick(i, j) {
@@ -101,8 +100,9 @@ class Game extends Component {
     });
   }
 
-  handleMode(mod){            
+  handleMode(){            
     let aux = document.getElementById("modeId");
+    let mod=this.state.modo;
     mod === "#" ? mod = "X" : mod = "#"; 
     aux.className === "modeButton"? aux.className= "modeButton paint"  : aux.className = "modeButton"
     
@@ -137,7 +137,7 @@ class Game extends Component {
             <Mode         
               modo = {this.state.modo}   
               gano = {this.state.gano}   
-              onClick = {(modo) => this.handleMode(this.state.modo)}
+              onClick = {() => this.handleMode()}
             />
           </div>
         </div>

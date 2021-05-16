@@ -34,6 +34,7 @@ body {
 }
 
 #modoMarcado{
+  /* texto */
   background-color: #ecd5a3;
   /* opacity: 0.8; */
   border-radius: 13px ;
@@ -198,7 +199,7 @@ body {
   height: 10%;
   width: 60%;  
 
-  animation-duration: 1s;
+  animation-duration: 4s;
   animation-fill-mode: forwards; 
   
 }
@@ -216,9 +217,7 @@ body {
   box-shadow: 5px 5px rgb(214, 88, 4);
 }
 
-.buttonGano{
-  background-color: rgb(230, 0, 57) !important; 
-}
+
 .paint-top-line{
   animation-name: top-line-animation-paint;
   margin: 0 auto;
