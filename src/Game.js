@@ -65,7 +65,7 @@ class Game extends Component {
           colSat: [].constructor(response['PistasColumnas'].length),
           gano: false
         });
-       this.verificarPistas();
+        this.verificarPistas();
         // this.forceUpdate();
     }});
 
