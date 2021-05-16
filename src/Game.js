@@ -26,49 +26,19 @@ class Game extends Component {
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
 
-  verificarPistas(){
-    let queryS;
-    let fila, pistaF;
-    
-    // let colAux=this.state.colSat;
-    
-    for(let i = 0 ; i < this.state.grid.length ; i++){ 
-      fila = JSON.stringify(this.state.grid[i]).replaceAll('"_"', "_");
-      pistaF = JSON.stringify(this.state.rowClues[i]);
-      queryS = 'satisface('+pistaF+','+fila+')';
-      
-      this.pengine.query(queryS, (success, response) => {
-        if (success) {
-           let filAux=this.state.filaSat;
-           filAux[i] = 1   ;
-           console.log('verificar pista: '+filAux[i])    ;
-           this.setState({
-            filaSat: filAux
-            });
-        }
-        
-      });
-    }
-   
-      
-  }
-  
   handlePengineCreate() {
-    const queryS = 'init(PistasFilas, PistasColumnas, Grilla)';
+    const queryS = 'init(PistasFilas, PistasColumnas, Grilla), controlInicial(Grilla,PistasFilas, PistasColumnas,LSatF,LSatC)';
     this.pengine.query(queryS, (success, response) => {
       if (success) {
         this.setState({
           grid: response['Grilla'],
           rowClues: response['PistasFilas'],
           colClues: response['PistasColumnas'],
-          filaSat: [].constructor(response['PistasFilas'].length),
-          colSat: [].constructor(response['PistasColumnas'].length),
+          filaSat: response['LSatF'],
+          colSat: response['LSatC'],
           gano: false
         });
-       this.verificarPistas();
-        // this.forceUpdate();
     }});
-
   }
 
   finalizoJuego(){
@@ -149,7 +119,7 @@ class Game extends Component {
    
     return (
       <div className="game" >
-        <h2>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
+        <h2 id= 'titulo'>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
         <Board
           grid={this.state.grid}
           rowClues={this.state.rowClues}
@@ -162,7 +132,7 @@ class Game extends Component {
         
         
         <div  className= "barraInferior">
-          <h3>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
+          <h3 id='modoMarcado'>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
           <div className= "barraBotones">
             <button className= "button restartButton" onClick={()=>this.handlePengineCreate()} > </button>
             <Mode         
