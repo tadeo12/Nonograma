@@ -199,7 +199,7 @@ body {
   height: 10%;
   width: 60%;  
 
-  animation-duration: 4s;
+  animation-duration: 1s;
   animation-fill-mode: forwards; 
   
 }
@@ -213,8 +213,15 @@ body {
   height: 60px;
   align-items: center;
   margin: 0 10px;
+  margin-bottom: 10px;
   border-radius: 13px;
   box-shadow: 5px 5px rgb(214, 88, 4);
+  
+}
+
+.button:active{
+  box-shadow: none;
+  transform: translateX(4px) translateY(4px);
 }
 
 
@@ -258,16 +265,16 @@ body {
 
 /* -----------CUADRADO-------------------- */
 @keyframes top-line-animation-paint {
-  0%{transform: translateY(17px) rotate(-45deg);}
+  0%{transform: translateY(10px) rotate(-45deg);}
 }
 @keyframes left-line-animation-paint {
-  0%{transform: translateY(-5px)rotate(45deg);}
+  0%{transform: translateY(-3px) rotate(45deg);}
 }
 @keyframes right-line-animation-paint {
- 0%{transform: translateY(5px) rotate(45deg);}
+ 0%{transform: translateY(3px) rotate(45deg);}
 }
 @keyframes bottom-line-animation-paint {
-  0%{transform: translateY(-17px) rotate(-45deg);}
+  0%{transform: translateY(-10px) rotate(-45deg);}
 }
 /* -----------CRUZ-------------------- */
 @keyframes top-line-animation {
