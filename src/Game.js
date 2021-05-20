@@ -118,7 +118,7 @@ class Game extends Component {
    
     return (
       <div className="game" >
-        <h2 id= 'titulo'>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
+        <h2 id={this.state.gano === true? "tituloWin" : "titulo"}>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
         <Board
           grid={this.state.grid}
           rowClues={this.state.rowClues}

@@ -1,12 +1,11 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
-  /* background-color: rgb(243, 211, 141); */
   align-items: center;
   display:flex;
   flex-direction: column;
   margin: 0px auto;
-  background-image: url(fondo.jpg);
+  background-image: url(img/fondo.png) ;
   background-size: 19%;
 }
 
@@ -15,17 +14,12 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0px auto;
-  /* background:rgb(226, 177, 145); */
-  /* padding-left: 50% ;
-  padding-right: 30% ;
-  padding: 20%;  */
 }
 
 #titulo{
   background-color: rgb(230, 126, 57);
-  opacity: 0.8;
   border-radius: 13px ;
-  border: 1px  solid #ecd5a3;
+  font-size: 30px;
   color: white;
   padding-top: 1%;
   padding-bottom: 1%;
@@ -33,10 +27,33 @@ body {
   padding-left: 3%;
 }
 
+#tituloWin{
+  background-color: rgb(230, 126, 57);
+  border-radius: 13px ;
+  color: white;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-right: 3%;
+  padding-left: 3%;
+  animation-name: win-animation;
+  animation-duration: 3s;
+  animation-direction: forwards;
+  z-index:50;
+  text-align: center;
+  animation-fill-mode:forwards;
+  font-size: 30px;
+}
+@keyframes win-animation {
+  
+  100%{
+    transform: translateY(500%);
+  }
+}
+
+
 #modoMarcado{
   /* texto */
   background-color: #ecd5a3;
-  /* opacity: 0.8; */
   border-radius: 13px ;
   border: 1px  solid #e07f2f ;
   color: rgb(202, 88, 12);
@@ -52,49 +69,39 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  
-  
 }
 
 .barraBotones{ 
   display: flex;
-  
 }
 
 .restartButton{
-  background: url(restart.png) white;
-  /* padding-top: 10%; */
+  background: url(img/restart.png) ;
   background-position: center;
-  background-color: white;
   background-size:75% ;
   background-repeat: no-repeat;
-  color: white;
- 
 }
 
 .squareGano{
   opacity: 0.5;
   cursor:auto !important;
-  border: 1px  solid #e07f2f ;
 }
-
 
 .square {
   background: #fff ;
-  border: 1px solid rgb(0, 0, 0);
+  border:rgb(230, 126, 57) 5% ;
   font-size: 30px;
   font-weight: bolder;
-  color: rgb(226, 177, 145) ;
   margin-right: 1px;
   margin-top: 1px;
   cursor:pointer;
   padding: 0;
   text-align: center;
   font-family:cursive;
+  border-radius: 15%;
 }
 
 .cruzSquare {
- 
   animation-name: cruzAnimation;
   animation-duration: 1s;
   animation-fill-mode: both; 
@@ -105,15 +112,10 @@ body {
 }
 
 .paintedSquare{
-  
-  /* background: rgb(230, 126, 57); */
   font-size: 0px;
   animation-name: paintAnimation;
   animation-duration: 1s;
   animation-fill-mode:both;
-  
-
-  
 }
 
 @keyframes paintAnimation{
@@ -127,8 +129,6 @@ body {
 
 .board {
   display: grid;
- 
-
 }
 
 .horizontal {
@@ -149,8 +149,6 @@ body {
   display: grid;
 }
 
-
-
 .clue {
   display: flex;
   justify-content: center;
@@ -158,8 +156,6 @@ body {
   background: #e07f2f;
   border-radius: 8px;
   margin: 5px;
-
-  
 }
 
 .clueSatisface {
@@ -170,7 +166,6 @@ body {
   animation-name: clueAnimation;
   animation-duration: 1s;
   animation-direction: both;
-
 }
 
 @keyframes clueAnimation{
@@ -178,7 +173,6 @@ body {
     background: #e07f2f;
     opacity: 1;
     color: black;
-
   }
 }
 
@@ -198,10 +192,8 @@ body {
   margin: 5px auto;
   height: 10%;
   width: 60%;  
-
   animation-duration: 1s;
   animation-fill-mode: forwards; 
-  
 }
 
 .button{
@@ -216,7 +208,6 @@ body {
   margin-bottom: 10px;
   border-radius: 13px;
   box-shadow: 5px 5px rgb(214, 88, 4);
-  
 }
 
 .button:active{
