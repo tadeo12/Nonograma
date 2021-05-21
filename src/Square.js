@@ -10,7 +10,7 @@ class Square extends Component {
         let gan = win ? " squareGano" : "" ;
 
         return (
-            <button className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
+            <button disabled = {this.props.gano ? true: false} className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
                 {val !== '_' ? val : null }
             </button>
         );

@@ -26,7 +26,13 @@ class Game extends Component {
   }
 
   handlePengineCreate() {
+    if (this.state.waiting) {
+      return;
+    }
     const queryS = 'init(PistasFilas, PistasColumnas, Grilla), controlInicial(Grilla,PistasFilas, PistasColumnas,LSatF,LSatC)';
+    this.setState({
+      waiting: true
+    });
     this.pengine.query(queryS, (success, response) => {
       if (success) {
         this.setState({
@@ -36,8 +42,12 @@ class Game extends Component {
           filaSat: response['LSatF'],
           colSat: response['LSatC'],
           gano: false
-        });
-    }});
+        }); 
+    }
+      this.setState({
+        waiting: false
+      });
+  });
   }
 
   finalizoJuego(){
@@ -58,9 +68,6 @@ class Game extends Component {
   handleClick(i, j) {
     // No action on click if we are waiting.
     if (this.state.waiting) {
-      return;
-    }
-    if (this.state.gano) {
       return;
     }
 
@@ -86,17 +93,13 @@ class Game extends Component {
           grid: response['GrillaRes'],
           filaSat: filAux,
           colSat: colAux,
-          waiting: false,
         })
         
         this.finalizoJuego();
-   
-      } else {
+      } 
         this.setState({
           waiting: false
-          
         });
-      }
     });
   }
 

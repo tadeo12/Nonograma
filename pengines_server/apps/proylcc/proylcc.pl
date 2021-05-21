@@ -47,7 +47,7 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	
 	getElement(PistasColumnas,ColN,PistasColumna),
 	(ColSat is 1, satisface(PistasColumna,Col); ColSat is 0).
-%
+
 
 % hacerColumna(+Xs,+ColN,-Col) 
 
