@@ -29,7 +29,7 @@ class Game extends Component {
     if (this.state.waiting) {
       return;
     }
-    const queryS = 'init(PistasFilas, PistasColumnas, Grilla),getSolution(PistasFilas,PistasColumnas,5,5,Grid),controlInicial(Grid,PistasFilas, PistasColumnas,LSatF,LSatC)';
+    const queryS = 'init(PistasFilas, PistasColumnas, Grilla),getSolution(PistasFilas,PistasColumnas,15,15,Grid),controlInicial(Grid,PistasFilas, PistasColumnas,LSatF,LSatC)';
     this.setState({
       waiting: true
     });
