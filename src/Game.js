@@ -29,14 +29,14 @@ class Game extends Component {
     if (this.state.waiting) {
       return;
     }
-    const queryS = 'init(PistasFilas, PistasColumnas, Grilla), controlInicial(Grilla,PistasFilas, PistasColumnas,LSatF,LSatC)';
+    const queryS = 'init(PistasFilas, PistasColumnas, Grilla),getSolution(PistasFilas,PistasColumnas,5,5,Grid),controlInicial(Grid,PistasFilas, PistasColumnas,LSatF,LSatC)';
     this.setState({
       waiting: true
     });
     this.pengine.query(queryS, (success, response) => {
       if (success) {
         this.setState({
-          grid: response['Grilla'],
+          grid: response['Grid'],
           rowClues: response['PistasFilas'],
           colClues: response['PistasColumnas'],
           filaSat: response['LSatF'],

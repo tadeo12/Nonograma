@@ -1,6 +1,6 @@
 :- module(proylcc,
 	[  
-		put/8, controlInicial/5
+		put/8, controlInicial/5, getSolution/5
 		
 	]).
 
@@ -65,8 +65,7 @@ satisface(Xs,[X|Ys]):-(var(X);X="X"),satisface(Xs,Ys).
 %satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin
 %recorrer luego de verificar la pista
 satisfacePista(0,[],[]).
-satisfacePista(0,[X|Xs],Xs):-var(X) ; X="X".%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
-
+satisfacePista(0,[X|Xs],Xs):- var(X) ; X="X".%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
 satisfacePista(N,[X|Xs],Res):- not(var(X)), X="#", N1 is N-1, satisfacePista(N1, Xs,Res).
 
 
@@ -94,3 +93,29 @@ satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[0|Ys]):-NumColSig is NumCol+1 ,sa
 % resuelta)
 % Si la linea ya tiene una celda pintada/con cruz
 % ¿Se podria asumir que si el tablero trae una celda con cruz o pintada esta bien?
+%getSolution(+PistasFila,+PistasCol,+LongFilas,+LongCol,-Grid)
+getSolution(PistasFila,PistasCol,LF,LC,Grid):-
+    getGrid(PistasFila,LF,LC,Grid),
+    controlCol(PistasCol,Grid,0).
+
+getGrid([],_LF,0,[]).
+getGrid([PistasF|PF],LF,LC,[Fila|Filas]):- LC1 is LC-1, getGrid(PF,LF,LC1,Filas), getPossibleLine(PistasF,LF,Fila).
+
+controlCol([],_Grid,_N).
+controlCol([PistasCol|PC],Grid,N):-N1 is N+1,controlCol(PC,Grid,N1),getColumn(Grid,N,Col),satisface(PistasCol,Col).
+
+
+
+%getPossibleLine(+ListaPista,+LongitudLinea,-Linea)
+getPossibleLine(Xs,N,L):-length(L,N),completarLinea(Xs,L).
+
+completarLinea([],[]).
+completarLinea([N|Xs],["#"|Ys]):- N1 is N -1, completarLineaAux(N1,Ys,Zs),completarLinea(Xs,Zs).
+completarLinea(Xs,["X"|Ys]):-completarLinea(Xs,Ys).
+
+%satisfacePista(+ValorPista,+Linea,-RestoLinea) retorna la parte de la linea que quedo sin
+%recorrer luego de verificar la pista
+completarLineaAux(0,[],[]).
+completarLineaAux(0,["X"|Xs],Xs).%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
+
+completarLineaAux(N,["#"|Xs],Res):-  N1 is N-1, completarLineaAux(N1, Xs,Res).
