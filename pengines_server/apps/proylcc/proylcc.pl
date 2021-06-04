@@ -40,7 +40,7 @@ put(Contenido, [RowN, ColN], PistasFilas, PistasColumnas, Grilla, NewGrilla, Fil
 	(replace(Cell, ColN, _ , Row, NewRow), Cell == Contenido ; replace(_Cell, ColN, Contenido, Row, NewRow) ),
 	
 	getElement(PistasFilas,RowN,PistasFila),
-	(FilaSat is 1 ,satisface(PistasFila,NewRow);FilaSat is 0),
+	(FilaSat is 1 ,satisface(PistasFila,NewRow); FilaSat is 0),
 
 	% se obtiene la columna en forma de lista
 	getColumn(NewGrilla,ColN,Col),
@@ -82,6 +82,15 @@ satisfaceCol(_Grilla,[],_NumCol,[]).
 satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[1|Ys]):-NumColSig is NumCol+1 ,satisfaceCol(Grilla,Pistas,NumColSig,Ys),getColumn(Grilla,NumCol,Col),satisface(PistasCol,Col).
 satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[0|Ys]):-NumColSig is NumCol+1 ,satisfaceCol(Grilla,Pistas,NumColSig,Ys),getColumn(Grilla,NumCol,Col),not(satisface(PistasCol,Col)).
 
+% solve(+PistasFilas,+PistasColumnas,+Grilla,-Solucion)
 
-
-
+% En una primer pasada, se recorre la grilla y se completan las lineas (fila o columna)
+% en las se puede determinar parte solamente viendo las pistas y la longitud de la linea
+% 		Ejemplo: si el tablero es de 5x5, y tengo un 4 como pista entonces se sabe que
+%		van a estar pintadas las 3 celdas del centro.
+% Asi como tambien aquellas lineas cuyas pistas se pueden satisfacer de una unica manera
+% 		Ejemplo: (Tambien en un tablero de 5x5) las pistas: [5], [2,2],  [3,1],  [1,3], [1,1,1], []
+% 		Las lineas se completarian con # y X en los casos anteriores (ya que la linea queda completamente
+% resuelta)
+% Si la linea ya tiene una celda pintada/con cruz
+% ¿Se podria asumir que si el tablero trae una celda con cruz o pintada esta bien?
