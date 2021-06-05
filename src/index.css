@@ -82,6 +82,31 @@ body {
   background-repeat: no-repeat;
 }
 
+.helpButton{
+  /* background-color: rgb(230, 126, 57)!important;  */
+  border: 0;
+  cursor:pointer;
+  padding:0;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  border-radius: 13px;
+  box-shadow: 5px 5px rgb(214, 88, 4);
+  background: url(img/foco.png) ;
+  background-color: rgb(230, 126, 57);
+  background-position: center;
+  background-size:75% ;
+  background-repeat: no-repeat;
+}
+
+.activeButttonHelp{
+  box-shadow: none;
+  background-color: rgb(214, 88, 4);
+  transform: translateX(4px) translateY(4px);
+}
+
 .squareGano{
   opacity: 0.5;
   cursor:auto !important;

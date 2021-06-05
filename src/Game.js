@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
 import Mode from './Mode';
+import ShowCell from './ShowHelp';
 
 
 class Game extends Component {
@@ -17,6 +18,8 @@ class Game extends Component {
       colSat: null,
       gano: false,
       waiting: false,
+      help: false,
+      solucion:null,
       modo: "#"
     };
     this.handleClick = this.handleClick.bind(this);
@@ -29,7 +32,7 @@ class Game extends Component {
     if (this.state.waiting) {
       return;
     }
-    const queryS = 'init(PistasFilas, PistasColumnas, Grilla),getSolution(PistasFilas,PistasColumnas,15,15,Grid),controlInicial(Grid,PistasFilas, PistasColumnas,LSatF,LSatC)';
+    const queryS = 'init(PistasFilas, PistasColumnas, Grid),controlInicial(Grid,PistasFilas, PistasColumnas,LSatF,LSatC)';
     this.setState({
       waiting: true
     });
@@ -41,13 +44,27 @@ class Game extends Component {
           colClues: response['PistasColumnas'],
           filaSat: response['LSatF'],
           colSat: response['LSatC'],
-          gano: false
-        }); 
+          gano: false,
+          help: false
+        });
+        if(this.state.solucion===null){
+          console.log("hoola");
+          const solutionQuery = 'init(PistasFilas,PistasColumnas,Grid),getSolution(PistasFilas,PistasColumnas,Grid)'
+          this.pengine.query(solutionQuery, (success, response) => {
+            if(success){
+              this.setState({
+                solucion: response['Grid']
+              })
+            }
+          });
+        }
     }
       this.setState({
         waiting: false
       });
   });
+  
+
   }
 
   finalizoJuego(){
@@ -76,8 +93,13 @@ class Game extends Component {
     const squaresS = JSON.stringify(this.state.grid).replaceAll('"_"', "_"); // Remove quotes for variables.
     const pistasF =JSON.stringify(this.state.rowClues);
     const pistasC =JSON.stringify(this.state.colClues);
-    const contenido = JSON.stringify(this.state.modo);    
-
+    
+    let contenido;
+    if(this.state.help){
+      contenido=JSON.stringify(this.state.solucion[i][j]);
+    }
+    else contenido = JSON.stringify(this.state.modo);    
+    if(!this.state.help || this.state.solucion[i][j]!==this.state.grid[i][j]){
     const queryS = 'put('+contenido+', [' + i + ',' + j + '],'+ pistasF+','+pistasC+',' + squaresS + ', GrillaRes, FilaSat, ColSat)';
     
     this.setState({
@@ -101,14 +123,20 @@ class Game extends Component {
           waiting: false
         });
     });
+    }
+  }
+
+  handleShowHelp(){
+    let helpAux=this.state.help;
+    helpAux=!helpAux; 
+    this.setState({
+       help : helpAux
+    });
   }
 
   handleMode(){            
-    let aux = document.getElementById("modeId");
     let mod=this.state.modo;
-    mod === "#" ? mod = "X" : mod = "#"; 
-    aux.className === "modeButton"? aux.className= "modeButton paint"  : aux.className = "modeButton"
-    
+    mod === "#" ? mod = "X" : mod = "#";    
     this.setState({
        modo : mod
     });
@@ -129,7 +157,8 @@ class Game extends Component {
           onClick={(i, j) => this.handleClick(i,j)}
           filaSat={this.state.filaSat}
           colSat={this.state.colSat}  
-          gano = {this.state.gano}       
+          gano = {this.state.gano}
+          help= {this.state.help}     
         />
         
         
@@ -142,6 +171,11 @@ class Game extends Component {
               gano = {this.state.gano}   
               onClick = {() => this.handleMode()}
             />
+            <ShowCell
+              help= {this.state.help}
+              onClick= {() => this.handleShowHelp()}
+            />
+            <button className= "button " onClick={()=>this.handlePengineCreate()} > </button>
           </div>
         </div>
       </div>
