@@ -11,7 +11,7 @@ class Square extends Component {
         
 
         return (
-            <button disabled = {this.props.gano ? true: false} className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
+            <button disabled = {this.props.gano||this.props.showSolve ? true: false} className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
                 {val !== '_' ? val : null }
             </button>
         );

@@ -5,7 +5,7 @@ body {
   display:flex;
   flex-direction: column;
   margin: 0px auto;
-  background-image: url(img/fondo.png) ;
+  background-image: url(img/fondo.png);
   background-size: 19%;
 }
 
@@ -16,6 +16,19 @@ body {
   margin: 0px auto;
 }
 
+#loading {
+  background: url(img/cat.gif) !important ;
+  background-size:contain;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 0px auto; */
+  border-radius: 13px ;
+  width: 800px;
+  height: 600px;
+
+  background-color: rgb(230, 126, 57);
+}
 #titulo{
   background-color: rgb(230, 126, 57);
   border-radius: 13px ;
@@ -82,6 +95,8 @@ body {
   background-repeat: no-repeat;
 }
 
+
+
 .helpButton{
   /* background-color: rgb(230, 126, 57)!important;  */
   border: 0;
@@ -101,7 +116,27 @@ body {
   background-repeat: no-repeat;
 }
 
-.activeButttonHelp{
+.solveButton{
+  background-color: rgb(230, 126, 57); 
+  border: 0;
+  cursor:pointer;
+  padding:0;
+  width: 60px;
+  height: 60px;
+  align-items: center;
+  margin: 0 10px;
+  margin-bottom: 10px;
+  border-radius: 13px;
+  box-shadow: 5px 5px rgb(214, 88, 4);
+  background: url(https://i.pinimg.com/originals/00/78/fc/0078fc8e0dcd6352cdf16f33e197a56a.gif) ;
+  background-color: rgb(230, 126, 57);
+  background-position: center;
+  background-size:180% ;
+ 
+  background-repeat: no-repeat;
+}
+
+.activeButtton{
   box-shadow: none;
   background-color: rgb(214, 88, 4);
   transform: translateX(4px) translateY(4px);

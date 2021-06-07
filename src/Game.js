@@ -3,6 +3,7 @@ import PengineClient from './PengineClient';
 import Board from './Board';
 import Mode from './Mode';
 import ShowCell from './ShowHelp';
+import ShowSolve from './ShowSolve';
 
 
 class Game extends Component {
@@ -20,7 +21,9 @@ class Game extends Component {
       waiting: false,
       help: false,
       solucion:null,
-      modo: "#"
+      modo: "#",
+      showSolve: false,
+      showedGrid : null
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
@@ -44,20 +47,22 @@ class Game extends Component {
           colClues: response['PistasColumnas'],
           filaSat: response['LSatF'],
           colSat: response['LSatC'],
+          showedGrid : response['Grid'],
           gano: false,
-          help: false
+          help: false,
         });
-        if(this.state.solucion===null){
-          console.log("hoola");
-          const solutionQuery = 'init(PistasFilas,PistasColumnas,Grid),getSolution(PistasFilas,PistasColumnas,Grid)'
-          this.pengine.query(solutionQuery, (success, response) => {
-            if(success){
-              this.setState({
-                solucion: response['Grid']
-              })
-            }
-          });
+        
+    }
+    if(this.state.solucion===null){
+      const solutionQuery = 'init(PistasFilas,PistasColumnas,Grid), getSolution(PistasFilas,PistasColumnas,Grid)'
+      this.pengine.query(solutionQuery, (success, response) => {
+        if(success){
+          this.setState({
+            solucion: response['Grid']
+          })
+          console.log(this.state.solucion)
         }
+      });
     }
       this.setState({
         waiting: false
@@ -115,6 +120,7 @@ class Game extends Component {
           grid: response['GrillaRes'],
           filaSat: filAux,
           colSat: colAux,
+          showedGrid:response['GrillaRes']
         })
         
         this.finalizoJuego();
@@ -126,6 +132,7 @@ class Game extends Component {
     }
   }
 
+  
   handleShowHelp(){
     let helpAux=this.state.help;
     helpAux=!helpAux; 
@@ -134,6 +141,21 @@ class Game extends Component {
     });
   }
 
+  handleShowSolve(){
+    if(this.state.solucion != null){
+      if(!this.state.showSolve){
+        this.setState({
+          showedGrid : this.state.solucion,
+          showSolve : true
+        });
+      }else{
+        this.setState({
+          showedGrid : this.state.grid,
+          showSolve : false
+        });
+      }
+   }
+  }
   handleMode(){            
     let mod=this.state.modo;
     mod === "#" ? mod = "X" : mod = "#";    
@@ -143,15 +165,21 @@ class Game extends Component {
   }
   
   render() {
-    if (this.state.grid === null) {
-      return null;
+    if (this.state.solucion === null) {
+      return (
+        <div>
+          <img  id = "loading" />
+        </div>
+        
+      );
     }
    
     return (
       <div className="game" >
         <h2 id={this.state.gano === true? "tituloWin" : "titulo"}>{this.state.gano === true? "Ganaste!" : "Nonogram"}</h2> 
         <Board
-          grid={this.state.grid}
+          grid={this.state.showedGrid}
+          showSolve={this.state.showSolve}
           rowClues={this.state.rowClues}
           colClues={this.state.colClues}
           onClick={(i, j) => this.handleClick(i,j)}
@@ -175,7 +203,13 @@ class Game extends Component {
               help= {this.state.help}
               onClick= {() => this.handleShowHelp()}
             />
-            <button className= "button " onClick={()=>this.handlePengineCreate()} > </button>
+
+            <ShowSolve
+              showSolve={this.state.showSolve}
+
+              onClick= {() => this.handleShowSolve()}
+            />
+            
           </div>
         </div>
       </div>

@@ -28,7 +28,12 @@ class Board extends Component {
                 >
                     <div>{/* top-left corner square */}</div>
                     {colClues.map((clue, i) =>
-                        <Clue clue={clue} satisface={this.props.colSat[i]} key={i}/>
+                        <Clue 
+                            clue={clue} 
+                            satisface={this.props.colSat[i]}   
+                            key={i}
+                            showSolve={this.props.showSolve}
+                        />
                     )}
                 </div>
                 <div className="horizontal">
@@ -41,7 +46,12 @@ class Board extends Component {
                         }}
                     >
                         {rowClues.map((clue, i) =>
-                            <Clue clue={clue} satisface={this.props.filaSat[i]} key={i}/>
+                            <Clue 
+                                clue={clue} 
+                                satisface={this.props.filaSat[i]} 
+                                key={i}
+                                showSolve={this.props.showSolve}
+                            />
                         )}
                     </div>
                     <div className="board"
@@ -56,6 +66,7 @@ class Board extends Component {
                                     onClick={() => this.props.onClick(i, j)}
                                     gano =  {this.props.gano}
                                     help= {this.props.help}
+                                    showSolve={this.props.showSolve}
                                     key={i + j}
                                 />
                             )
