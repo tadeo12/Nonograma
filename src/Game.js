@@ -60,7 +60,6 @@ class Game extends Component {
           this.setState({
             solucion: response['Grid']
           })
-          console.log(this.state.solucion)
         }
       });
     }
@@ -194,21 +193,22 @@ class Game extends Component {
         <div  className= "barraInferior">
           <h3 id='modoMarcado'>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
           <div className= "barraBotones">
-            <button title="Reiniciar partida" className= "button restartButton" onClick={()=>this.handlePengineCreate()} > 
+            <button disabled ={this.state.showSolve} title="Reiniciar partida" className= "button restartButton" onClick={()=>this.handlePengineCreate()} > 
             </button>
             <Mode      
               modo = {this.state.modo}   
-              gano = {this.state.gano}   
+              gano = {this.state.gano}
+              showSolve={this.state.showSolve}
               onClick = {() => this.handleMode()}
             />
             <ShowCell 
               help= {this.state.help}
+              showSolve={this.state.showSolve}
               onClick= {() => this.handleShowHelp()}
             />
 
             <ShowSolve
               showSolve={this.state.showSolve}
-
               onClick= {() => this.handleShowSolve()}
             />
             

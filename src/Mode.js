@@ -5,7 +5,7 @@ class Mode extends Component{
     render(){
         
         return(
-            <button title="Cambiar modo" disabled = {this.props.gano ? true: false} className= {this.props.modo === "#" ? " button paint" : "button" } onClick={this.props.onClick}>
+            <button title="Cambiar modo" disabled = {this.props.gano ||this.props.showSolve} className= {this.props.modo === "#" ? " button paint" : "button" } onClick={this.props.onClick}>
                 
                 <span className =  {this.props.modo === "#" ? "span paint-top-line" : "span top-line" }></span>
                 <span className = {this.props.modo === "#" ? "span paint-right-line" : "span right-line" }></span>

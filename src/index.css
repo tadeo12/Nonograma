@@ -144,7 +144,7 @@ body {
   border: 0;
   color:white;
   font: 14px bold sans-serif;
- 
+  cursor:pointer;
   padding:0;
   width: 60px;
   height: 60px;

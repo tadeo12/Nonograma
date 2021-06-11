@@ -95,7 +95,7 @@ satisfaceCol(Grilla,[PistasCol|Pistas],NumCol,[0|Ys]):-NumColSig is NumCol+1 ,sa
 % ¿Se podria asumir que si el tablero trae una celda con cruz o pintada esta bien?
 %getSolution(+PistasFila,+PistasCol,+Grid)
 getSolution(PistasFila,PistasCol,Grid):-
-    lineasUnicaSolucion(PistasFila,PistasCol,Grid),
+    lineasSolucionSegura(PistasFila,PistasCol,Grid),
     completarGrilla(PistasFila,PistasCol,Grid).
 
     %getGrid(PistasFila,LF,LC,Grid),
@@ -110,23 +110,29 @@ getSolution(PistasFila,PistasCol,Grid):-
 % N+1,controlCol(PC,Grid,N1),getColumn(Grid,N,Col),satisface(PistasCol,Col).
 %
 
-lineasUnicaSolucion(PistasFila,PistasCol,Grid):-length(PistasFila,LongC),length(PistasCol,LongF),
+lineasSolucionSegura(PistasFila,PistasCol,Grid):-length(PistasFila,LongC),length(PistasCol,LongF),
     primerPasadaFilas(PistasFila,LongF,Grid),primerPasadaCols(PistasCol,LongC,0,Grid).
 
 primerPasadaFilas([],_LongF,[]).
-primerPasadaFilas([PistasFila|Pistas],LongF,[Fila|Filas]):-primerPasadaFilas(Pistas,LongF,Filas),checkUnicaSolucion(PistasFila,LongF,Fila).
+primerPasadaFilas([PistasFila|Pistas],LongF,[Fila|Filas]):-primerPasadaFilas(Pistas,LongF,Filas),checkSolucionSegura(PistasFila,LongF,Fila).
 
 primerPasadaCols([],_LongC,_NumCol,_Grid).
 primerPasadaCols([PistasCol|Pistas],LongC,NumCol,Grid):-N1 is NumCol+1,primerPasadaCols(Pistas,LongC,N1,Grid),
-    getColumn(Grid,NumCol,Col),checkUnicaSolucion(PistasCol,LongC,Col).
+    getColumn(Grid,NumCol,Col),checkSolucionSegura(PistasCol,LongC,Col).
 
 % si se cumple la igualdad solo hay una unica solucion para la la
 % linea,entonces se completa. sino se deja igual.
-checkUnicaSolucion(Pistas,LongF,Fila):-sumatoria(Pistas,SumaP),length(Pistas,LP),SumaP+LP-1=:=LongF,getPossibleCompleteLine(Pistas,Fila).
-checkUnicaSolucion(_Pistas,_LongF,_Fila).
+checkSolucionSegura(Pistas,LongL,Linea):-findall(LineaPosible,(length(LineaPosible,LongL),getPossibleCompleteLine(Pistas,LineaPosible)),TodasPosibles)
+,interseccion(TodasPosibles,0,Linea).
 
-sumatoria([],0).
-sumatoria([X|Xs],Resultado):-sumatoria(Xs,R1), Resultado is R1+X.
+interseccion(Posibles,_LongL,[UltimoElemento]):-getColumn(Posibles,0,PosiblesUltimos),todosIguales(PosiblesUltimos,UltimoElemento).
+interseccion(_Posibles,_LongL,[_UltimoElemento]).
+interseccion(Posibles,N,[Actual|LineaRes]):-N1 is N+1,interseccion(Posibles,N1,LineaRes)
+      ,getColumn(Posibles,N,PosiblesActual),todosIguales(PosiblesActual,Actual).
+interseccion(Posibles,N,[_Actual|LineaRes]):-N1 is N+1,interseccion(Posibles,N1,LineaRes).
+
+todosIguales([Elemento],Elemento).
+todosIguales([Elemento|Elems],Elemento):-todosIguales(Elems,Elemento).
 
 %completarGrilla(+PistasF,+PistasC,+Grid).
 completarGrilla(PistasF,PistasC,Grid):-completarFilas(PistasF,Grid),completarColumnas(PistasC,0,Grid).
