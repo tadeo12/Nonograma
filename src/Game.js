@@ -167,7 +167,8 @@ class Game extends Component {
   render() {
     if (this.state.solucion === null) {
       return (
-        <div>
+        <div id="pantallaCarga">
+          <h1 id = "textoLoading" >cargando...</h1>
           <img  id = "loading" />
         </div>
         
@@ -193,13 +194,14 @@ class Game extends Component {
         <div  className= "barraInferior">
           <h3 id='modoMarcado'>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
           <div className= "barraBotones">
-            <button className= "button restartButton" onClick={()=>this.handlePengineCreate()} > </button>
-            <Mode         
+            <button title="Reiniciar partida" className= "button restartButton" onClick={()=>this.handlePengineCreate()} > 
+            </button>
+            <Mode      
               modo = {this.state.modo}   
               gano = {this.state.gano}   
               onClick = {() => this.handleMode()}
             />
-            <ShowCell
+            <ShowCell 
               help= {this.state.help}
               onClick= {() => this.handleShowHelp()}
             />

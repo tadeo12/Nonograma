@@ -15,20 +15,43 @@ body {
   align-items: center;
   margin: 0px auto;
 }
+#pantallaCarga{
+  /* padding: 20px 0; */
+  /* position: absolute; */
+  margin-top: -7%;
+  align-items: center;
+}
+
+#textoLoading {
+  /* height: 400px;
+  width: 100%; */
+  /* margin: auto; */
+  /* margin-top: 20px; */
+  font: 40px "Century Gothic", bold;
+  color: antiquewhite;
+  margin-left: 320px;
+  transform: translateY(500px);
+  z-index: 50;
+}
 
 #loading {
-  background: url(img/cat.gif) !important ;
-  background-size:contain;
-  display: flex;
-  flex-direction: column;
+  background: url(img/gatito-gordito.gif) !important ;
+  background-size:150%;
+  /* display: flex;
+  flex-direction: column; */
   align-items: center;
-  /* margin: 0px auto; */
-  border-radius: 13px ;
-  width: 800px;
-  height: 600px;
-
+  /* margin: 10% auto; */
+  border-radius: 50% ;
+  width:842px;
+  height:596px;
   background-color: rgb(230, 126, 57);
+
+  /* position: relative; */
+  /* top: 10%; */
+  z-index: 100;
 }
+
+
 #titulo{
   background-color: rgb(230, 126, 57);
   border-radius: 13px ;
@@ -119,7 +142,9 @@ body {
 .solveButton{
   background-color: rgb(230, 126, 57); 
   border: 0;
-  cursor:pointer;
+  color:white;
+  font: 14px bold sans-serif;
+ 
   padding:0;
   width: 60px;
   height: 60px;
@@ -128,13 +153,14 @@ body {
   margin-bottom: 10px;
   border-radius: 13px;
   box-shadow: 5px 5px rgb(214, 88, 4);
-  background: url(https://i.pinimg.com/originals/00/78/fc/0078fc8e0dcd6352cdf16f33e197a56a.gif) ;
+  /* background: url(https://i.pinimg.com/originals/00/78/fc/0078fc8e0dcd6352cdf16f33e197a56a.gif) ; */
   background-color: rgb(230, 126, 57);
   background-position: center;
   background-size:230% ;
  
   background-repeat: no-repeat;
 }
+
 
 .activeButtton{
   box-shadow: none;
