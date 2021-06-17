@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import PengineClient from './PengineClient';
 import Board from './Board';
 import Mode from './Mode';
-import ShowCell from './ShowHelp';
+import ShowHelp from './ShowHelp';
 import ShowSolve from './ShowSolve';
 
 
@@ -27,7 +27,6 @@ class Game extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handlePengineCreate = this.handlePengineCreate.bind(this);
-    this.handleMode = this.handleMode.bind(this);
     this.pengine = new PengineClient(this.handlePengineCreate);
   }
 
@@ -141,7 +140,7 @@ class Game extends Component {
   }
 
   handleShowSolve(){
-    if(this.state.solucion != null){
+    if(this.state.solucion !== null && !this.state.waiting){
       if(!this.state.showSolve){
         this.setState({
           showedGrid : this.state.solucion,
@@ -168,7 +167,7 @@ class Game extends Component {
       return (
         <div id="pantallaCarga">
           <h1 id = "textoLoading" >cargando...</h1>
-          <img  id = "loading" />
+          <div   id = "loading" />
         </div>
         
       );
@@ -186,10 +185,7 @@ class Game extends Component {
           filaSat={this.state.filaSat}
           colSat={this.state.colSat}  
           gano = {this.state.gano}
-          help= {this.state.help}     
         />
-        
-        
         <div  className= "barraInferior">
           <h3 id='modoMarcado'>Modo: {this.state.modo === "#"? "pintar" : "cruz"} </h3>
           <div className= "barraBotones">
@@ -201,14 +197,16 @@ class Game extends Component {
               showSolve={this.state.showSolve}
               onClick = {() => this.handleMode()}
             />
-            <ShowCell 
+            <ShowHelp
               help= {this.state.help}
               showSolve={this.state.showSolve}
+              gano = {this.state.gano}
               onClick= {() => this.handleShowHelp()}
             />
 
             <ShowSolve
               showSolve={this.state.showSolve}
+              gano = {this.state.gano}
               onClick= {() => this.handleShowSolve()}
             />
             
