@@ -128,7 +128,7 @@ checkSolucionSegura(Pistas,LongL,Linea):-findall(LineaPosible,(length(LineaPosib
 interseccion(Posibles,_LongL,[UltimoElemento]):-getColumn(Posibles,0,PosiblesUltimos),todosIguales(PosiblesUltimos,UltimoElemento).
 interseccion(_Posibles,_LongL,[_UltimoElemento]).
 interseccion(Posibles,N,[Actual|LineaRes]):-N1 is N+1,interseccion(Posibles,N1,LineaRes)
-      ,getColumn(Posibles,N,PosiblesActual),todosIguales(PosiblesActual,Actual).
+,getColumn(Posibles,N,PosiblesActual),todosIguales(PosiblesActual,Actual).
 interseccion(Posibles,N,[_Actual|LineaRes]):-N1 is N+1,interseccion(Posibles,N1,LineaRes).
 
 todosIguales([Elemento],Elemento).
