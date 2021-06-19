@@ -5,7 +5,6 @@ import Mode from './Mode';
 import ShowHelp from './ShowHelp';
 import ShowSolve from './ShowSolve';
 
-
 class Game extends Component {
 
   pengine;
@@ -50,7 +49,6 @@ class Game extends Component {
           gano: false,
           help: false,
         });
-        
     }
     if(this.state.solucion===null){
       const solutionQuery = 'init(PistasFilas,PistasColumnas,Grid), getSolution(PistasFilas,PistasColumnas,Grid)'
@@ -65,9 +63,7 @@ class Game extends Component {
       this.setState({
         waiting: false
       });
-  });
-  
-
+    });
   }
 
   finalizoJuego(){
@@ -90,7 +86,6 @@ class Game extends Component {
     if (this.state.waiting) {
       return;
     }
-
     // Build Prolog query to make the move, which will look as follows:
     // put("#",[0,1],[], [],[["X",_,_,_,_],["X",_,"X",_,_],["X",_,_,_,_],["#","#","#",_,_],[_,_,"#","#","#"]], GrillaRes, FilaSat, ColSat)
     const squaresS = JSON.stringify(this.state.grid).replaceAll('"_"', "_"); // Remove quotes for variables.
@@ -114,13 +109,14 @@ class Game extends Component {
         const colAux=this.state.colSat;
         filAux[i]=response['FilaSat'];
         colAux[j]=response['ColSat'];
+
         this.setState({
           grid: response['GrillaRes'],
           filaSat: filAux,
           colSat: colAux,
           showedGrid:response['GrillaRes']
         })
-        
+
         this.finalizoJuego();
       } 
         this.setState({
@@ -169,7 +165,6 @@ class Game extends Component {
           <h1 id = "textoLoading" >cargando...</h1>
           <div   id = "loading" />
         </div>
-        
       );
     }
    
@@ -209,16 +204,11 @@ class Game extends Component {
               gano = {this.state.gano}
               onClick= {() => this.handleShowSolve()}
             />
-            
           </div>
         </div>
       </div>
-     
-           
     );
   }
-
-
 }
 
 export default Game;

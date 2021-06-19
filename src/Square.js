@@ -8,8 +8,6 @@ class Square extends Component {
         let cru = val === 'X' ? " cruzSquare" : "";
         let gan = win ? " squareGano" : "" ;
     
-        
-
         return (
             <button disabled = {this.props.gano||this.props.showSolve ? true: false} className= {"square"+pint+cru+gan} onClick={this.props.onClick}>
                 {val !== '_' ? val : null }
