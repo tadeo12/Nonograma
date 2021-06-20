@@ -130,8 +130,6 @@ getPossibleCompleteLine([],[]).
 getPossibleCompleteLine([N|Xs],["#"|Ys]):- N1 is N -1, completeLineAux(N1,Ys,Zs),getPossibleCompleteLine(Xs,Zs).
 getPossibleCompleteLine(Xs,["X"|Ys]):-getPossibleCompleteLine(Xs,Ys).
 
-
 completeLineAux(0,[],[]):-!.
 completeLineAux(0,["X"|Xs],Xs):-!.%si llego a 0 la pista, la siguiente celda tendra que ser una variable o una x
-
 completeLineAux(N,["#"|Xs],Res):-  N1 is N-1, completeLineAux(N1, Xs,Res).
